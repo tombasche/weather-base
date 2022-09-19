@@ -16,8 +16,6 @@ defmodule WeatherTrackerWeb.WeatherConditionsControllerCreateTest do
 
       body = conn |> json_response(201)
 
-      IO.inspect(conn.resp_body)
-
       assert %{
                "altitude_m" => "1000",
                "pressure_pa" => "998",

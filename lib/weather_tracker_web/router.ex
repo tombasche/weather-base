@@ -9,5 +9,6 @@ defmodule WeatherTrackerWeb.Router do
     pipe_through :api
 
     post "/weather-conditions", WeatherConditionsController, :create
+    get "/weather-conditions", WeatherConditionsController, :get
   end
 end

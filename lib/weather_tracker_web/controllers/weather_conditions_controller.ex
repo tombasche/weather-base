@@ -25,4 +25,11 @@ defmodule WeatherTrackerWeb.WeatherConditionsController do
         |> json(%{message: "Poorly formatted payload"})
     end
   end
+
+  @spec get(Plug.Conn.t(), any) :: Plug.Conn.t()
+  def get(conn, params) do
+    conn
+    |> put_status(:ok)
+    |> json(%{data: [%{blah: "bloo"}]})
+  end
 end
