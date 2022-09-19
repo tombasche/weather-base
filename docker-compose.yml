@@ -11,5 +11,15 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
 
+  grafana:
+    image: grafana/grafana:8.2.6
+    depends_on:
+      - postgres
+    ports:
+      - '3000:3000'
+    volumes:
+      - grafana-data:/var/lib/grafana
+
 volumes:
   postgres-data: {}
+  grafana-data: {}
