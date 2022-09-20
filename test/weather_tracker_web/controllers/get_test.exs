@@ -28,7 +28,12 @@ defmodule WeatherTrackerWeb.WeatherConditionsControllerGetTest do
       body = conn |> json_response(200)
 
       assert length(body["data"]) == 1
-      assert List.first(body["data"])[:timestamp] == outside_last_hour
+      # assert List.first(body["data"])[:timestamp] == outside_last_hour
+    end
+
+    test "no args passed returns a 400" do
+      conn = get(build_conn(), "/api/weather-conditions")
+      assert conn.status == 400
     end
   end
 
