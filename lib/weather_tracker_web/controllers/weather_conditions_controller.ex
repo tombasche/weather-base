@@ -27,9 +27,12 @@ defmodule WeatherTrackerWeb.WeatherConditionsController do
   end
 
   @spec get(Plug.Conn.t(), any) :: Plug.Conn.t()
-  def get(conn, params) do
+  def get(conn, %{"hour" => hour}) do
+    hour = String.to_integer(hour)
+    weather_conditions = WeatherConditions.get_entries(hour, 0, 0, 0)
+
     conn
     |> put_status(:ok)
-    |> json(%{data: [%{blah: "bloo"}]})
+    |> json(%{data: weather_conditions})
   end
 end
