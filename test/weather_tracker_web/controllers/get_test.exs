@@ -5,8 +5,10 @@ defmodule WeatherTrackerWeb.WeatherConditionsControllerGetTest do
 
   describe "get weather conditions" do
     test "last hour" do
+      now = NaiveDateTime.utc_now()
+
       weather_condition = %{
-        timestamp: NaiveDateTime.utc_now(),
+        timestamp: now,
         altitude_m: "400",
         pressure_pa: "998",
         temperature_c: "15",
@@ -15,7 +17,7 @@ defmodule WeatherTrackerWeb.WeatherConditionsControllerGetTest do
         light_lumens: "0"
       }
 
-      outside_last_hour = NaiveDateTime.add(NaiveDateTime.utc_now(), -7200, :second)
+      outside_last_hour = NaiveDateTime.add(now, -7200, :second)
 
       create_condition(%{
         weather_condition
@@ -28,7 +30,8 @@ defmodule WeatherTrackerWeb.WeatherConditionsControllerGetTest do
       body = conn |> json_response(200)
 
       assert length(body["data"]) == 1
-      # assert List.first(body["data"])[:timestamp] == outside_last_hour
+      result_time = NaiveDateTime.from_iso8601!(List.first(body["data"])["timestamp"])
+      assert result_time == NaiveDateTime.truncate(now, :second)
     end
 
     test "no args passed returns a 400" do
