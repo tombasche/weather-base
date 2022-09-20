@@ -29,6 +29,13 @@ defmodule WeatherTracker.WeatherConditions do
             where: e.timestamp > ^NaiveDateTime.add(now, d * -86400)
           )
         )
+
+      {0, 0, m, 0} ->
+        all(
+          from(e in WeatherCondition,
+            where: e.timestamp > ^NaiveDateTime.add(now, m * -2_419_200)
+          )
+        )
     end
   end
 
