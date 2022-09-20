@@ -19,7 +19,6 @@ defmodule WeatherTracker.WeatherConditions do
       from e in WeatherCondition,
         where: e.timestamp > ^NaiveDateTime.add(now, hour * -3600)
 
-    IO.inspect(query)
     Repo.all(query)
   end
 end

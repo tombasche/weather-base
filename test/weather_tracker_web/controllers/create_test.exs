@@ -3,7 +3,10 @@ defmodule WeatherTrackerWeb.WeatherConditionsControllerCreateTest do
 
   describe "create weather condition" do
     test "returns 201 when created" do
+      now = NaiveDateTime.utc_now()
+
       weather_condition = %{
+        timestamp: now,
         altitude_m: "1000",
         pressure_pa: "998",
         temperature_c: "15",
@@ -17,6 +20,7 @@ defmodule WeatherTrackerWeb.WeatherConditionsControllerCreateTest do
       body = conn |> json_response(201)
 
       assert %{
+               "timestamp" => now,
                "altitude_m" => "1000",
                "pressure_pa" => "998",
                "temperature_c" => "15",

@@ -28,6 +28,7 @@ defmodule WeatherTrackerWeb.WeatherConditionsControllerGetTest do
       body = conn |> json_response(200)
 
       assert length(body["data"]) == 1
+      assert List.first(body["data"])[:timestamp] == outside_last_hour
     end
   end
 
