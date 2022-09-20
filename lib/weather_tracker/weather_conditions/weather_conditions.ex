@@ -12,13 +12,27 @@ defmodule WeatherTracker.WeatherConditions do
     |> Repo.insert()
   end
 
-  def get_entries(hour, _day, _month, _year) do
+  def get_entries(hour \\ 0, day \\ 0, month \\ 0, year \\ 0) do
     now = NaiveDateTime.utc_now()
 
-    query =
-      from e in WeatherCondition,
-        where: e.timestamp > ^NaiveDateTime.add(now, hour * -3600)
+    case {hour, day, month, year} do
+      {h, 0, 0, 0} ->
+        all(
+          from(e in WeatherCondition,
+            where: e.timestamp > ^NaiveDateTime.add(now, h * -3600)
+          )
+        )
 
+      {0, d, 0, 0} ->
+        all(
+          from(e in WeatherCondition,
+            where: e.timestamp > ^NaiveDateTime.add(now, d * -86400)
+          )
+        )
+    end
+  end
+
+  defp all(query) do
     Repo.all(query)
   end
 end

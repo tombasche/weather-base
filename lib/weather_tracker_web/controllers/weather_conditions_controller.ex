@@ -36,6 +36,16 @@ defmodule WeatherTrackerWeb.WeatherConditionsController do
     |> json(%{data: weather_conditions})
   end
 
+  def get(conn, %{"day" => day}) do
+    day = String.to_integer(day)
+    # TODO pass in optional parameters
+    weather_conditions = WeatherConditions.get_entries(0, day, 0, 0)
+
+    conn
+    |> put_status(:ok)
+    |> json(%{data: weather_conditions})
+  end
+
   def get(conn, %{}) do
     conn
     |> put_status(:bad_request)
