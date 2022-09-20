@@ -28,8 +28,7 @@ defmodule WeatherTrackerWeb.WeatherConditionsController do
 
   def get(conn, %{"hour" => hour}) do
     hour = String.to_integer(hour)
-    # TODO pass in optional parameters
-    weather_conditions = WeatherConditions.get_entries(hour, 0, 0, 0)
+    weather_conditions = WeatherConditions.get_entries(hour)
 
     conn
     |> put_status(:ok)
@@ -38,8 +37,7 @@ defmodule WeatherTrackerWeb.WeatherConditionsController do
 
   def get(conn, %{"day" => day}) do
     day = String.to_integer(day)
-    # TODO pass in optional parameters
-    weather_conditions = WeatherConditions.get_entries(0, day, 0, 0)
+    weather_conditions = WeatherConditions.get_entries(0, day)
 
     conn
     |> put_status(:ok)
@@ -48,8 +46,7 @@ defmodule WeatherTrackerWeb.WeatherConditionsController do
 
   def get(conn, %{"month" => month}) do
     month = String.to_integer(month)
-    # TODO pass in optional parameters
-    weather_conditions = WeatherConditions.get_entries(0, 0, month, 0)
+    weather_conditions = WeatherConditions.get_entries(0, 0, month)
 
     conn
     |> put_status(:ok)
@@ -59,6 +56,6 @@ defmodule WeatherTrackerWeb.WeatherConditionsController do
   def get(conn, %{}) do
     conn
     |> put_status(:bad_request)
-    |> json(%{message: "Please specify either hour, day, month or year query params"})
+    |> json(%{message: "Please specify either hour, day or month query params"})
   end
 end
