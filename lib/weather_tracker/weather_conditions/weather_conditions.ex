@@ -6,6 +6,10 @@ defmodule WeatherTracker.WeatherConditions do
 
   import Ecto.Query, only: [from: 2]
 
+  @seconds_in_hour 3600
+  @seconds_in_day 86400
+  @seconds_in_28_days 2_419_200
+
   def create_entry(attrs) do
     %WeatherCondition{}
     |> WeatherCondition.create_changeset(attrs)
@@ -13,33 +17,17 @@ defmodule WeatherTracker.WeatherConditions do
   end
 
   def get_entries(hour \\ 0, day \\ 0, month \\ 0) do
-    now = NaiveDateTime.utc_now()
+    period =
+      case {hour, day, month} do
+        {h, 0, 0} -> h * -@seconds_in_hour
+        {0, d, 0} -> d * -@seconds_in_day
+        {0, 0, m} -> m * -@seconds_in_28_days
+      end
 
-    case {hour, day, month} do
-      {h, 0, 0} ->
-        all(
-          from(e in WeatherCondition,
-            where: e.timestamp > ^NaiveDateTime.add(now, h * -3600)
-          )
-        )
-
-      {0, d, 0} ->
-        all(
-          from(e in WeatherCondition,
-            where: e.timestamp > ^NaiveDateTime.add(now, d * -86400)
-          )
-        )
-
-      {0, 0, m} ->
-        all(
-          from(e in WeatherCondition,
-            where: e.timestamp > ^NaiveDateTime.add(now, m * -2_419_200)
-          )
-        )
-    end
-  end
-
-  defp all(query) do
-    Repo.all(query)
+    Repo.all(
+      from(e in WeatherCondition,
+        where: e.timestamp > ^NaiveDateTime.add(NaiveDateTime.utc_now(), period)
+      )
+    )
   end
 end
