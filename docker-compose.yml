@@ -1,7 +1,19 @@
 version: '3.3'
 
 services:
-  postgres:
+  app:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "4000:4000"
+    environment:
+      DB_HOST: db
+    depends_on:
+      - db
+    command:
+      - "./entrypoint.sh"
+  db:
     image: timescale/timescaledb:latest-pg14
     ports:
       - '5432:5432'
@@ -14,7 +26,7 @@ services:
   grafana:
     image: grafana/grafana:8.2.6
     depends_on:
-      - postgres
+      - db
     ports:
       - '3000:3000'
     volumes:
