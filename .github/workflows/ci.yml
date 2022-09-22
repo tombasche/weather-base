@@ -13,5 +13,6 @@ jobs:
       - name: Start the database
         run: docker compose up -d
       - run: mix deps.get
+      - run: mix format --check-formatted
       - run: mix credo
       - run: mix test
