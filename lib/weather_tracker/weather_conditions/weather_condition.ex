@@ -1,4 +1,7 @@
 defmodule WeatherTracker.WeatherConditions.WeatherCondition do
+  @moduledoc """
+  Describes the database schema for the weather condition entity
+  """
   use Ecto.Schema
   import Ecto.Changeset
 

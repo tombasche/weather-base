@@ -1,4 +1,8 @@
 defmodule WeatherTracker.WeatherConditions do
+  @moduledoc """
+  Describes the database interaction layer for the
+  weather condition entity
+  """
   alias WeatherTracker.{
     Repo,
     WeatherConditions.WeatherCondition
@@ -7,7 +11,7 @@ defmodule WeatherTracker.WeatherConditions do
   import Ecto.Query, only: [from: 2]
 
   @seconds_in_hour 3600
-  @seconds_in_day 86400
+  @seconds_in_day 86_400
   @seconds_in_28_days 2_419_200
 
   def create_entry(attrs) do

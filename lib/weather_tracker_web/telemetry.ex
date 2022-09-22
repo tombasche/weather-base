@@ -1,4 +1,8 @@
 defmodule WeatherTrackerWeb.Telemetry do
+  @moduledoc """
+  This decribes the telemetry collected
+  for the web portion of the base station
+  """
   use Supervisor
   import Telemetry.Metrics
 

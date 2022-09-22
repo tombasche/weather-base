@@ -52,7 +52,7 @@ defmodule WeatherTrackerWeb.WeatherConditionsControllerGetTest do
 
       create_condition(%{
         weather_condition
-        | timestamp: NaiveDateTime.add(now, -86401, :second)
+        | timestamp: NaiveDateTime.add(now, -86_401, :second)
       })
 
       create_condition(%{
