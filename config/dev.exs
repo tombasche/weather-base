@@ -64,13 +64,14 @@ config :phoenix, :plug_init_mode, :runtime
 config :git_hooks,
   auto_install: true,
   verbose: true,
+  branches: [
+    whitelist: ["*"]
+  ],
   hooks: [
     pre_commit: [
       tasks: [
         {:cmd, "mix format --check-formatted"},
-        {:cmd, "mix dialyzer"},
-        {:cmd, "mix credo"},
-        {:cmd, "echo 'success!'"}
+        {:cmd, "mix credo"}
       ]
     ]
   ]
