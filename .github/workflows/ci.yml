@@ -10,5 +10,7 @@ jobs:
         with:
           otp-version: '25'
           elixir-version: '1.13'
+      - name: Start the database
+        run: docker compose up -d
       - run: mix deps.get
       - run: mix test
