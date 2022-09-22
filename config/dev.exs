@@ -59,3 +59,18 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+# pre-commit config
+config :git_hooks,
+  auto_install: true,
+  verbose: true,
+  hooks: [
+    pre_commit: [
+      tasks: [
+        {:cmd, "mix format --check-formatted"},
+        {:cmd, "mix dialyzer"},
+        {:cmd, "mix credo"},
+        {:cmd, "echo 'success!'"}
+      ]
+    ]
+  ]
