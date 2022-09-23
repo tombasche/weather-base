@@ -10,9 +10,7 @@ defmodule WeatherTrackerWeb.WeatherConditionsControllerCreateTest do
         altitude_m: "1000",
         pressure_pa: "998",
         temperature_c: "15",
-        co2_eq_ppm: "400",
-        tvoc_ppb: "0",
-        light_lumens: "0"
+        gas_resistance_ohms: "3000"
       }
 
       conn = post(build_conn(), "/api/weather-conditions", weather_condition)
@@ -20,13 +18,10 @@ defmodule WeatherTrackerWeb.WeatherConditionsControllerCreateTest do
       body = conn |> json_response(201)
 
       assert %{
-               "timestamp" => now,
                "altitude_m" => "1000",
                "pressure_pa" => "998",
                "temperature_c" => "15",
-               "co2_eq_ppm" => "400",
-               "tvoc_ppb" => "0",
-               "light_lumens" => "0"
+               "gas_resistance_ohms" => "3000"
              } = body
     end
   end

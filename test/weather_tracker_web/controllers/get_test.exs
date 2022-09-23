@@ -12,9 +12,7 @@ defmodule WeatherTrackerWeb.WeatherConditionsControllerGetTest do
         altitude_m: "400",
         pressure_pa: "998",
         temperature_c: "15",
-        co2_eq_ppm: "400",
-        tvoc_ppb: "0",
-        light_lumens: "0"
+        gas_resistance_ohms: "3000"
       }
 
       create_condition(%{
@@ -45,9 +43,7 @@ defmodule WeatherTrackerWeb.WeatherConditionsControllerGetTest do
         altitude_m: "400",
         pressure_pa: "998",
         temperature_c: "15",
-        co2_eq_ppm: "400",
-        tvoc_ppb: "0",
-        light_lumens: "0"
+        gas_resistance_ohms: "3000"
       }
 
       create_condition(%{
@@ -78,9 +74,7 @@ defmodule WeatherTrackerWeb.WeatherConditionsControllerGetTest do
         altitude_m: "400",
         pressure_pa: "998",
         temperature_c: "15",
-        co2_eq_ppm: "400",
-        tvoc_ppb: "0",
-        light_lumens: "0"
+        gas_resistance_ohms: "3000"
       }
 
       create_condition(%{
