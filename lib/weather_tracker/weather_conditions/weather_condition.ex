@@ -10,6 +10,8 @@ defmodule WeatherTracker.WeatherConditions.WeatherCondition do
     :altitude_m,
     :pressure_pa,
     :temperature_c,
+    :humidity_rh,
+    :dew_point_c,
     :gas_resistance_ohms
   ]
   @derive {Jason.Encoder, only: @required_fields}
@@ -19,6 +21,8 @@ defmodule WeatherTracker.WeatherConditions.WeatherCondition do
     field :altitude_m, :decimal
     field :pressure_pa, :decimal
     field :temperature_c, :decimal
+    field :humidity_rh, :decimal
+    field :dew_point_c, :decimal
     field :gas_resistance_ohms, :decimal
   end
 

@@ -12,6 +12,8 @@ defmodule WeatherTrackerWeb.WeatherConditionsControllerGetTest do
         altitude_m: "400",
         pressure_pa: "998",
         temperature_c: "15",
+        dew_point_c: "2",
+        humidity_rh: "34",
         gas_resistance_ohms: "3000"
       }
 
@@ -43,6 +45,8 @@ defmodule WeatherTrackerWeb.WeatherConditionsControllerGetTest do
         altitude_m: "400",
         pressure_pa: "998",
         temperature_c: "15",
+        dew_point_c: "2",
+        humidity_rh: "34",
         gas_resistance_ohms: "3000"
       }
 
@@ -74,6 +78,8 @@ defmodule WeatherTrackerWeb.WeatherConditionsControllerGetTest do
         altitude_m: "400",
         pressure_pa: "998",
         temperature_c: "15",
+        dew_point_c: "2",
+        humidity_rh: "34",
         gas_resistance_ohms: "3000"
       }
 

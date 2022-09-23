@@ -9,6 +9,8 @@ defmodule WeatherTracker.Repo.Migrations.SetUpWeatherDataTable do
       add :altitude_m, :decimal, null: false
       add :pressure_pa, :decimal, null: false
       add :temperature_c, :decimal, null: false
+      add :dew_point_c, :decimal, null: false
+      add :humidity_rh, :decimal, null: false
       add :gas_resistance_ohms, :decimal, null: false
     end
 
