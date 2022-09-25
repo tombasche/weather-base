@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+message WeatherCondition {
+  string timestamp = 1;
+  string altitude_m = 2;
+  string pressure_pa = 3;
+  string temperature_c = 4;
+  string humidity_rh = 5;
+  string dew_point_c = 6;
+  string gas_resistance_ohms = 7;
+}

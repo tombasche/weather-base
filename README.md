@@ -1,19 +1,17 @@
 # WeatherTracker
 
-To start your Phoenix server:
+The server portion of the home weather tracking.
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+## Development
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Use `docker compose up -d` to start everything or `docker compose up -d db` for just Postgres
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+## TODO
 
-## Learn more
+- gRPC for create method
+- A 'latest' endpoint which gets the last entry in the db which returns the top row
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+  - Could this use websockets? also with gRPC? (it'd be the same pb as the create endpoint!)
+
+- Build a UI on top of the latest endpoint to display these things
+  - I think I'll just run a separate UI on top which uses HTTP -> HTTP is smart enough to not hop out of the local network if it doesn't have to. Much easier than trying to cram reactive JS on top of Phoenix.
