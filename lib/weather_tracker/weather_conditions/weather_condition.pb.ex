@@ -11,11 +11,19 @@ defmodule WeatherConditionEvent do
   field :gas_resistance_ohms, 7, type: :string, json_name: "gasResistanceOhms"
 end
 
+defmodule WeatherConditionEventResponse do
+  @moduledoc false
+  use Protobuf, protoc_gen_elixir_version: "0.11.0", syntax: :proto3
+
+  field :timestamp, 1, type: :string
+  field :error, 2, type: :string
+end
+
 defmodule WeatherConditionService.Service do
   @moduledoc false
   use GRPC.Service, name: "WeatherConditionService", protoc_gen_elixir_version: "0.11.0"
 
-  rpc(:Create, WeatherConditionEvent, WeatherConditionEvent)
+  rpc(:Create, WeatherConditionEvent, WeatherConditionEventResponse)
 end
 
 defmodule WeatherConditionService.Stub do

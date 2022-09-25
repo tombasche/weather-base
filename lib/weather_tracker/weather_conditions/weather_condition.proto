@@ -10,6 +10,12 @@ message WeatherConditionEvent {
   string gas_resistance_ohms = 7;
 }
 
+
+message WeatherConditionEventResponse {
+  string timestamp = 1;
+  string error = 2;
+}
+
 service WeatherConditionService {
-  rpc Create(WeatherConditionEvent) returns (WeatherConditionEvent);
+  rpc Create(WeatherConditionEvent) returns (WeatherConditionEventResponse);
 }
