@@ -1,4 +1,4 @@
-defmodule WeatherCondition do
+defmodule WeatherConditionEvent do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.11.0", syntax: :proto3
 
@@ -9,4 +9,16 @@ defmodule WeatherCondition do
   field :humidity_rh, 5, type: :string, json_name: "humidityRh"
   field :dew_point_c, 6, type: :string, json_name: "dewPointC"
   field :gas_resistance_ohms, 7, type: :string, json_name: "gasResistanceOhms"
+end
+
+defmodule WeatherConditionService.Service do
+  @moduledoc false
+  use GRPC.Service, name: "WeatherConditionService", protoc_gen_elixir_version: "0.11.0"
+
+  rpc(:Create, WeatherConditionEvent, WeatherConditionEvent)
+end
+
+defmodule WeatherConditionService.Stub do
+  @moduledoc false
+  use GRPC.Stub, service: WeatherConditionService.Service
 end

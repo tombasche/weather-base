@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-message WeatherCondition {
+message WeatherConditionEvent {
   string timestamp = 1;
   string altitude_m = 2;
   string pressure_pa = 3;
@@ -8,4 +8,8 @@ message WeatherCondition {
   string humidity_rh = 5;
   string dew_point_c = 6;
   string gas_resistance_ohms = 7;
+}
+
+service WeatherConditionService {
+  rpc Create(WeatherConditionEvent) returns (WeatherConditionEvent);
 }
