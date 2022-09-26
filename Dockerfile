@@ -1,6 +1,6 @@
 FROM elixir:latest
 
-EXPOSE 4000
+EXPOSE 50051
 
 RUN apt-get update && \
     apt-get install -y postgresql-client && \

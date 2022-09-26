@@ -13,16 +13,6 @@ config :weather_tracker, WeatherTracker.Repo,
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 
-# We don't run a server during test. If one is required,
-# you can enable the server option below.
-config :weather_tracker, WeatherTrackerWeb.Endpoint,
-  http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "+g15fCZFSEfgbElIJdXBdGSrWnke9xkWdSQ6V1sQmaAz2/XqXBof1hGRtpoKJakG",
-  server: false
-
-# In test we don't send emails.
-config :weather_tracker, WeatherTracker.Mailer, adapter: Swoosh.Adapters.Test
-
 # Print only warnings and errors during test
 config :logger, level: :warn
 

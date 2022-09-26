@@ -10,4 +10,4 @@ mix ecto.create
 mix ecto.migrate
 echo "Database created."
 
-mix phx.server
+mix grpc.server

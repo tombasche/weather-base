@@ -8,19 +8,10 @@ defmodule WeatherTracker.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      # Start the Ecto repository
       WeatherTracker.Repo,
-      # Start the Telemetry supervisor
-      WeatherTrackerWeb.Telemetry,
-      # Start the PubSub system
-      {Phoenix.PubSub, name: WeatherTracker.PubSub},
-      {GRPC.Server.Supervisor, {WeatherTrackerWeb.Endpoint, 50051}}
-      # Start a worker by calling: WeatherTracker.Worker.start_link(arg)
-      # {WeatherTracker.Worker, arg}
+      {GRPC.Server.Supervisor, {WeatherTrackerWeb.Endpoint, 50051, start_server: true}}
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: WeatherTracker.Supervisor]
     Supervisor.start_link(children, opts)
   end
