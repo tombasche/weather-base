@@ -2,12 +2,12 @@ syntax = "proto3";
 
 message WeatherConditionEvent {
   string timestamp = 1;
-  string altitude_m = 2;
-  string pressure_pa = 3;
-  string temperature_c = 4;
-  string humidity_rh = 5;
-  string dew_point_c = 6;
-  string gas_resistance_ohms = 7;
+  float altitude_m = 2;
+  float pressure_pa = 3;
+  float temperature_c = 4;
+  float humidity_rh = 5;
+  float dew_point_c = 6;
+  float gas_resistance_ohms = 7;
 }
 
 
