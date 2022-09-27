@@ -23,7 +23,7 @@ defmodule WeatherConditionService.Service do
   @moduledoc false
   use GRPC.Service, name: "WeatherConditionService", protoc_gen_elixir_version: "0.11.0"
 
-  rpc :Create, WeatherConditionEvent, WeatherConditionEventResponse
+  rpc(:Create, WeatherConditionEvent, WeatherConditionEventResponse)
 end
 
 defmodule WeatherConditionService.Stub do

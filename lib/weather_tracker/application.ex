@@ -1,6 +1,4 @@
 defmodule WeatherTracker.Application do
-  # See https://hexdocs.pm/elixir/Application.html
-  # for more information on OTP Applications
   @moduledoc false
 
   use Application
@@ -9,7 +7,7 @@ defmodule WeatherTracker.Application do
   def start(_type, _args) do
     children = [
       WeatherTracker.Repo,
-      {GRPC.Server.Supervisor, {WeatherTrackerWeb.Endpoint, 50051, start_server: true}}
+      {GRPC.Server.Supervisor, {WeatherTrackerWeb.Endpoint, 50_051, start_server: true}}
     ]
 
     opts = [strategy: :one_for_one, name: WeatherTracker.Supervisor]
