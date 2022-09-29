@@ -10,6 +10,7 @@ defmodule WeatherTrackerWeb.Server do
 
   use GRPC.Server, service: WeatherConditionService.Service
 
+  @spec create(atom | struct, any) :: struct
   def create(request, _stream) do
     case WeatherConditions.create_entry(Map.from_struct(request)) do
       {:ok, weather_condition = %WeatherCondition{}} ->
