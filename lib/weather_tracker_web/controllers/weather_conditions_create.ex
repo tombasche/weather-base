@@ -4,6 +4,8 @@ defmodule WeatherTrackerWeb.Server do
     WeatherConditions.WeatherCondition
   }
 
+  @moduledoc false
+
   require Logger
 
   use GRPC.Server, service: WeatherConditionService.Service

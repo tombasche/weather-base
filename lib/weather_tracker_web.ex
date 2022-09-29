@@ -1,4 +1,5 @@
 defmodule WeatherTrackerWeb do
+  @moduledoc false
   def view do
     quote do
     end
