@@ -1,7 +1,20 @@
 defmodule WeatherTrackerWeb do
   @moduledoc false
-  def view do
+  def controller do
     quote do
+      use Phoenix.Controller, namespace: WeatherTrackerWeb
+
+      import Plug.Conn
+      alias WeatherTrackerWeb.Router.Helpers, as: Routes
+    end
+  end
+
+  def router do
+    quote do
+      use Phoenix.Router
+
+      import Plug.Conn
+      import Phoenix.Controller
     end
   end
 

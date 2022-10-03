@@ -7,10 +7,17 @@ defmodule WeatherTracker.Application do
   def start(_type, _args) do
     children = [
       WeatherTracker.Repo,
-      {GRPC.Server.Supervisor, {WeatherTrackerWeb.Endpoint, 50_051, start_server: true}}
+      {GRPC.Server.Supervisor, {WeatherTrackerWeb.Endpoint, 50_051, start_server: true}},
+      WeatherTrackerWeb.Endpoint
     ]
 
     opts = [strategy: :one_for_one, name: WeatherTracker.Supervisor]
     Supervisor.start_link(children, opts)
+  end
+
+  @impl true
+  def config_change(changed, _new, removed) do
+    WeatherTrackerWeb.Endpoint.config_change(changed, removed)
+    :ok
   end
 end
