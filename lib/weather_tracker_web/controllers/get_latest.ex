@@ -3,15 +3,15 @@ defmodule WeatherTrackerWeb.WeatherConditionsController do
 
   require Logger
 
-  # alias WeatherTracker.{
-  #   WeatherConditions,
-  #   WeatherConditions.WeatherCondition
-  # }
+  alias WeatherTracker.{
+    WeatherConditions,
+    WeatherConditions.WeatherCondition
+  }
 
   def get_latest(conn, params) do
-    IO.inspect(params)
+    result = WeatherConditions.get_latest()
 
     conn
-    |> json(%{id: 1, temperature_c: 15})
+    |> json(result)
   end
 end
