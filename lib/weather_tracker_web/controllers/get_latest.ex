@@ -9,9 +9,6 @@ defmodule WeatherTrackerWeb.WeatherConditionsController do
   }
 
   def get_latest(conn, params) do
-    result = WeatherConditions.get_latest()
-
-    conn
-    |> json(result)
+    conn |> json(WeatherConditions.get_latest())
   end
 end
