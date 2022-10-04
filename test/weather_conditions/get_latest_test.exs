@@ -7,7 +7,7 @@ defmodule WeatherTrackerWeb.WeatherConditionsGetLatestTest do
     create_new(%{
       timestamp: ~N[2022-09-04 04:55:17],
       altitude_m: 0,
-      pressure_pa: 10000,
+      pressure_pa: 10_000,
       temperature_c: 15,
       humidity_rh: 50,
       dew_point_c: 4,
@@ -17,7 +17,7 @@ defmodule WeatherTrackerWeb.WeatherConditionsGetLatestTest do
     create_new(%{
       timestamp: ~N[2022-10-04 04:55:17],
       altitude_m: 0,
-      pressure_pa: 10000,
+      pressure_pa: 10_000,
       temperature_c: 15,
       humidity_rh: 50,
       dew_point_c: 4,

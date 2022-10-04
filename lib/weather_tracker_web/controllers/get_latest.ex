@@ -1,14 +1,11 @@
 defmodule WeatherTrackerWeb.WeatherConditionsController do
   use WeatherTrackerWeb, :controller
 
-  require Logger
-
   alias WeatherTracker.{
-    WeatherConditions,
-    WeatherConditions.WeatherCondition
+    WeatherConditions
   }
 
-  def get_latest(conn, params) do
+  def get_latest(conn, _params) do
     conn |> json(WeatherConditions.get_latest())
   end
 end
