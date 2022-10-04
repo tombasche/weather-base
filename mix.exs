@@ -41,6 +41,7 @@ defmodule WeatherTracker.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:grpc, "~> 0.5.0"},
       {:protobuf, "~> 0.10"},
+      {:cors_plug, "~> 3.0"},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false}
     ]

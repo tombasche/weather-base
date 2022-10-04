@@ -1,9 +1,26 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
+import { WeatherCondition } from './types';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe('main page', () => {
+  const weatherCondition: WeatherCondition = {
+    timestamp: '2022-09-27T16:57:58',
+    altitude_m: '-79.2500991821289',
+    pressure_pa: '100943.03125',
+    temperature_c: '24.928709030151367',
+    humidity_rh: '54.518096923828125',
+    dew_point_c: '15.131230354309082',
+    gas_resistance_ohms: '50009.390625',
+  };
+
+  it('displays temperature', async () => {
+    const fetchMethod = jest.fn(() => Promise.resolve(weatherCondition));
+
+    render(<App fetchMethod={fetchMethod} />);
+
+    const temperature = await screen.findByTestId('temperature');
+
+    expect(temperature.textContent).toBe('25°');
+  });
 });
