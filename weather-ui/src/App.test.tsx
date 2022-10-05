@@ -23,4 +23,14 @@ describe('main page', () => {
 
     expect(temperature.textContent).toBe('25°');
   });
+
+  it('shows an error message if loading fails', async () => {
+    const fetchMethod = jest.fn(() =>
+      Promise.reject({ message: 'An error occurred' }),
+    );
+    render(<App fetchMethod={fetchMethod} />);
+
+    const error = await screen.findByText('An error occurred');
+    expect(error).toBeInTheDocument();
+  });
 });

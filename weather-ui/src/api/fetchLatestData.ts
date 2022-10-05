@@ -1,7 +1,7 @@
-import React from 'react';
 import { WeatherCondition } from '../types';
 
-export const fetchLatestData = async () =>
-  await fetch('http://localhost:4000/api/weather-conditions')
+export async function fetchLatestData<T extends WeatherCondition>() {
+  return await fetch(`${process.env.WEATHER_BASE_URL}/api/weather-conditions`)
     .then((response) => response.json())
-    .then((data) => data as WeatherCondition);
+    .then((data) => data as T);
+}

@@ -2,14 +2,10 @@ import React from 'react';
 import { round } from '../utils';
 
 type Props = {
-  temperature: string | undefined;
+  temperature: string;
 };
 
 const Temperature = ({ temperature }: Props) => {
-  if (temperature === undefined) {
-    return <p>loading ... </p>;
-  }
-
   return <div data-testid="temperature">{round(temperature)}°</div>;
 };
 

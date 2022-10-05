@@ -7,15 +7,26 @@ type Props = {
 };
 
 const App = ({ fetchMethod }: Props) => {
-  const [data, setData] = React.useState<WeatherCondition | undefined>();
+  const [data, setData] = React.useState<WeatherCondition>();
+  const [error, setError] = React.useState<string>();
 
   React.useEffect(() => {
-    fetchMethod().then((response) => setData(response));
-  }, []);
+    fetchMethod()
+      .then((response) => setData(response))
+      .catch((e) => setError(e.message));
+  }, [fetchMethod]);
+
+  if (error !== undefined) {
+    return <div>{error}</div>;
+  }
+
+  if (data === undefined) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
-      <Temperature temperature={data?.temperature_c} />
+      <Temperature temperature={data.temperature_c} />
     </div>
   );
 };
