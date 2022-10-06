@@ -11,7 +11,7 @@ const Root = styled.div`
 `;
 
 const Temperature = ({ temperature }: Props) => {
-  return <Root data-testid="temperature">{round(temperature)}°</Root>;
+  return <Root>{round(temperature)}°</Root>;
 };
 
 export default Temperature;

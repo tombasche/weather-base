@@ -19,7 +19,7 @@ describe('main page', () => {
 
     render(<App fetchMethod={fetchMethod} />);
 
-    const temperature = await screen.findByTestId('temperature');
+    const temperature = await screen.findByText(/°/);
 
     expect(temperature.textContent).toBe('25°');
   });
