@@ -48,7 +48,7 @@ const App = ({ fetchMethod }: Props) => {
       <TemperatureContainer>
         <Temperature temperature={data.temperature_c} />
       </TemperatureContainer>
-      <DateAndTime date={date} />
+      <DateAndTime now={date} />
     </Root>
   );
 };
