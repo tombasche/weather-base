@@ -2,6 +2,7 @@ import React from 'react';
 import Cog from '../images/Cog';
 import styled from 'styled-components';
 import Modal from './Modal';
+import Toggle from './Toggle';
 
 const Root = styled.div`
   position: absolute;
@@ -17,8 +18,14 @@ const SettingsButton = styled.span`
   cursor: pointer;
 `;
 
-const Settings = () => {
+type Props = {
+  updateSettings: () => void;
+};
+
+const Settings = ({ updateSettings }: Props) => {
   const [modalOpen, setModalOpen] = React.useState<boolean>(false);
+
+  const [isToggled, setIsToggled] = React.useState<boolean>(false);
 
   return (
     <Root>
@@ -31,7 +38,24 @@ const Settings = () => {
         onClose={() => setModalOpen(false)}
       >
         <Content>
-          TODO - 24 hour time, temperature in fahrenheit / kelvin
+          <div>
+            <select
+              data-testid="temperature-unit-select"
+              onChange={() => updateSettings()}
+            >
+              <option value="CELSIUS">Celsius</option>
+              <option value="FAHRENHEIT">Fahrenheit (F)</option>
+              <option value="KELVIN">Kelvin (K)</option>
+            </select>
+            Temperature unit
+          </div>
+          <div>
+            <Toggle
+              toggled={isToggled}
+              onToggle={() => setIsToggled(!isToggled)}
+            />
+            Use 12-hour time
+          </div>
         </Content>
       </Modal>
     </Root>
