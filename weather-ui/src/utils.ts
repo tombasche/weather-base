@@ -5,7 +5,12 @@ export const round = (value: string): number => {
 };
 
 export const to_unit = (value: number, unit: TemperatureUnit): number => {
-  if (unit === 'FAHRENHEIT') {
-    return value * 1.8 + 32;
+  switch (unit) {
+    case 'FAHRENHEIT':
+      return value * 1.8 + 32;
+    case 'KELVIN':
+      return value + 273.15;
+    case 'CELSIUS':
+      return value;
   }
 };
