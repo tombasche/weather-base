@@ -23,6 +23,12 @@ const App = ({ fetchMethod }: Props) => {
   const [data, setData] = React.useState<WeatherCondition>();
   const [error, setError] = React.useState<string>();
 
+  const [date, setDate] = React.useState<Date>(new Date());
+
+  React.useEffect(() => {
+    setInterval(() => setDate(new Date()), 30000);
+  }, []);
+
   React.useEffect(() => {
     fetchMethod()
       .then((response) => setData(response))
@@ -42,7 +48,7 @@ const App = ({ fetchMethod }: Props) => {
       <TemperatureContainer>
         <Temperature temperature={data.temperature_c} />
       </TemperatureContainer>
-      <DateAndTime />
+      <DateAndTime date={date} />
     </Root>
   );
 };
