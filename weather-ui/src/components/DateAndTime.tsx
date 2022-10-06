@@ -35,7 +35,8 @@ const DateAndTime = ({ now }: Props) => {
         {hours % 12}
         <BlinkingColon>:</BlinkingColon>
         {leadingZero}
-        {minutes} {amPm}{' '}
+        {minutes}
+        {amPm}{' '}
       </span>
     );
   };
