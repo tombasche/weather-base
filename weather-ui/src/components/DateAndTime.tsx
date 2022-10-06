@@ -1,10 +1,20 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const Root = styled.div`
   position: absolute;
   top: 25px;
   right: 35px;
+`;
+
+const blinker = keyframes`
+50% {
+    opacity: 0;
+  }
+`;
+
+const BlinkingColon = styled.span`
+  animation: ${blinker} 2s step-start infinite;
 `;
 
 const DateAndTime = () => {
@@ -24,7 +34,9 @@ const DateAndTime = () => {
 
     return (
       <span>
-        {amPmHours}:{leadingZero}
+        {amPmHours}
+        <BlinkingColon>:</BlinkingColon>
+        {leadingZero}
         {minutes} {amPm}{' '}
       </span>
     );
