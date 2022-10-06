@@ -13,26 +13,27 @@ const Content = styled.div`
   padding: 15px;
 `;
 
+const SettingsButton = styled.span`
+  cursor: pointer;
+`;
+
 const Settings = () => {
   const [modalOpen, setModalOpen] = React.useState<boolean>(false);
 
   return (
     <Root>
-      <span onClick={() => setModalOpen(true)}>
+      <SettingsButton onClick={() => setModalOpen(true)}>
         <Cog />
-      </span>
-
-      {modalOpen && (
-        <>
-          <Modal
-            title="Settings"
-            isOpen={modalOpen}
-            close={() => setModalOpen(false)}
-          >
-            <Content>here be stuff</Content>
-          </Modal>
-        </>
-      )}
+      </SettingsButton>
+      <Modal
+        title="Settings"
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+      >
+        <Content>
+          TODO - 24 hour time, temperature in fahrenheit / kelvin
+        </Content>
+      </Modal>
     </Root>
   );
 };

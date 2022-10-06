@@ -45,21 +45,21 @@ const ModalTitle = styled.h2`
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 `;
 
-interface ModalProps {
+type Props = {
   title: string;
   isOpen: boolean;
-  close: () => void;
+  onClose: () => void;
   children: React.ReactNode;
-}
+};
 
-const Modal: React.FC<ModalProps> = ({ title, isOpen, close, children }) => {
+const Modal = ({ title, isOpen, onClose, children }: Props) => {
   const useCloseOnOutsideClick = (ref: RefObject<HTMLDivElement>) => {
     useEffect(() => {
-      function handleClickOutside(event: { target: any }) {
+      const handleClickOutside = (event: { target: any }) => {
         if (ref.current && !ref.current.contains(event.target)) {
-          close();
+          onClose();
         }
-      }
+      };
       document.addEventListener('mousedown', handleClickOutside);
       return () => {
         document.removeEventListener('mousedown', handleClickOutside);

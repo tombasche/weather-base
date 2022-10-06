@@ -45,5 +45,6 @@ describe('main page', () => {
     fireEvent.click(settingsIcon);
 
     const settingsModal = await screen.findByText('Settings');
+    expect(settingsModal).toBeInTheDocument();
   });
 });
