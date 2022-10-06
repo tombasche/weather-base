@@ -3,6 +3,7 @@ import Temperature from './components/Temperature';
 import { WeatherCondition } from './types';
 import styled from 'styled-components';
 import DateAndTime from './components/DateAndTime';
+import Settings from './components/Settings';
 
 type Props = {
   fetchMethod: () => Promise<WeatherCondition>;
@@ -12,11 +13,15 @@ const Root = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  z-index: 0;
 `;
 
 const TemperatureContainer = styled.div`
   position: absolute;
   top: 25%;
+
+  z-index: 0;
 `;
 
 const App = ({ fetchMethod }: Props) => {
@@ -45,6 +50,7 @@ const App = ({ fetchMethod }: Props) => {
 
   return (
     <Root>
+      <Settings />
       <TemperatureContainer>
         <Temperature temperature={data.temperature_c} />
       </TemperatureContainer>
