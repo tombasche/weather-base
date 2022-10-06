@@ -1,6 +1,6 @@
 import React from 'react';
 import Temperature from './components/Temperature';
-import { WeatherCondition } from './types';
+import { TemperatureUnit, WeatherCondition } from './types';
 import styled from 'styled-components';
 import DateAndTime from './components/DateAndTime';
 import Settings from './components/Settings';
@@ -13,16 +13,15 @@ const Root = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  z-index: 0;
 `;
 
 const TemperatureContainer = styled.div`
   position: absolute;
   top: 25%;
-
-  z-index: 0;
 `;
+
+const TIME_UPDATE_INTERVAL = 30_000; // 30 seconds
+const DEFAULT_TEMPERATURE_UNIT = 'CELSIUS';
 
 const App = ({ fetchMethod }: Props) => {
   const [data, setData] = React.useState<WeatherCondition>();
@@ -30,8 +29,10 @@ const App = ({ fetchMethod }: Props) => {
 
   const [date, setDate] = React.useState<Date>(new Date());
 
+  const [unit] = React.useState<TemperatureUnit>(DEFAULT_TEMPERATURE_UNIT);
+
   React.useEffect(() => {
-    setInterval(() => setDate(new Date()), 30000);
+    setInterval(() => setDate(new Date()), TIME_UPDATE_INTERVAL);
   }, []);
 
   React.useEffect(() => {
@@ -52,7 +53,7 @@ const App = ({ fetchMethod }: Props) => {
     <Root>
       <Settings />
       <TemperatureContainer>
-        <Temperature temperature={data.temperature_c} />
+        <Temperature temperature={data.temperature_c} unit={unit} />
       </TemperatureContainer>
       <DateAndTime now={date} />
     </Root>
