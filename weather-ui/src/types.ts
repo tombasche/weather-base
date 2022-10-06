@@ -7,3 +7,5 @@ export type WeatherCondition = {
   dew_point_c: string;
   gas_resistance_ohms: string;
 };
+
+export type TemperatureUnit = 'CELSIUS' | 'FAHRENHEIT' | 'KELVIN';
