@@ -43,6 +43,21 @@ const DateAndTime = ({ now, displayFormat }: Props) => {
     );
   };
 
+  const time24h = () => {
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const leadingZero = minutes < 10 ? '0' : '';
+
+    return (
+      <span>
+        {hours}
+        <BlinkingColon>:</BlinkingColon>
+        {leadingZero}
+        {minutes}{' '}
+      </span>
+    );
+  };
+
   const date = () => {
     return now.toLocaleDateString('en-GB', {
       day: 'numeric',
@@ -53,7 +68,7 @@ const DateAndTime = ({ now, displayFormat }: Props) => {
 
   return (
     <Root>
-      {time()}
+      {displayFormat === '12H' ? time() : time24h()}
       {date()}
     </Root>
   );
