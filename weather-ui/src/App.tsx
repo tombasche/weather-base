@@ -3,7 +3,6 @@ import Temperature from './components/Temperature';
 import { Settings, WeatherCondition } from './types';
 import styled from 'styled-components';
 import DateAndTime from './components/DateAndTime';
-import SettingsModal from './components/SettingsModal';
 import Loading from './components/Loading';
 import ErrorBanner from './components/ErrorBanner';
 
@@ -36,7 +35,7 @@ const App = ({ fetchMethod }: Props) => {
 
   const [date, setDate] = React.useState<Date>(new Date());
 
-  const [settings, updateSettings] = React.useState<Settings>(DEFAULT_SETTINGS);
+  const [settings] = React.useState<Settings>(DEFAULT_SETTINGS);
 
   React.useEffect(() => {
     setInterval(() => setDate(new Date()), TIME_UPDATE_INTERVAL);
@@ -45,9 +44,7 @@ const App = ({ fetchMethod }: Props) => {
   React.useEffect(() => {
     fetchMethod()
       .then((response) => setData(response))
-      .catch((e) => {
-        setError(e);
-      });
+      .catch((e) => setError(e));
   }, [fetchMethod]);
 
   if (error !== undefined) {
@@ -60,10 +57,6 @@ const App = ({ fetchMethod }: Props) => {
 
   return (
     <Root>
-      <SettingsModal
-        currentSettings={settings}
-        onUpdate={(newSettings) => updateSettings(newSettings)}
-      />
       <TemperatureContainer>
         <Temperature
           temperature={data.temperature_c}

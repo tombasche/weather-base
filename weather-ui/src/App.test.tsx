@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from './App';
 import { WeatherCondition } from './types';
 
@@ -44,17 +44,5 @@ describe('main page', () => {
 
     const error = await screen.findByText('An error occurred');
     expect(error).toBeInTheDocument();
-  });
-
-  it('opens the settings modal when icon is clicked', async () => {
-    const fetchMethod = jest.fn(() => Promise.resolve(weatherCondition));
-
-    render(<App fetchMethod={fetchMethod} />);
-
-    const settingsIcon = await screen.findByTitle(/Settings icon/);
-    fireEvent.click(settingsIcon);
-
-    const settingsModal = await screen.findByText('Settings');
-    expect(settingsModal).toBeInTheDocument();
   });
 });
