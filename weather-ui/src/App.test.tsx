@@ -26,6 +26,15 @@ describe('main page', () => {
     expect(fetchMethod.mock.calls.length).toBe(1);
   });
 
+  it('shows something to indicate it is loading', async () => {
+    const fetchMethod = jest.fn(() => new Promise(() => weatherCondition));
+
+    render(<App fetchMethod={fetchMethod} />);
+
+    const loading = await screen.findByText(/Loading/);
+    expect(loading).toBeInTheDocument();
+  });
+
   it('shows an error message if loading fails', async () => {
     const fetchMethod = jest.fn(() =>
       Promise.reject({ message: 'An error occurred' }),

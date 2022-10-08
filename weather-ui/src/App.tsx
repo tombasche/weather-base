@@ -51,7 +51,7 @@ const App = ({ fetchMethod }: Props) => {
 
   return (
     <Root>
-      <Settings />
+      <Settings updateSettings={() => console.log('nothing to see here')} />
       <TemperatureContainer>
         <Temperature temperature={data.temperature_c} unit={unit} />
       </TemperatureContainer>
