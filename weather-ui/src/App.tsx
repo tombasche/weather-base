@@ -70,7 +70,7 @@ const App = ({ fetchMethod }: Props) => {
           unit={settings.temperatureUnit}
         />
       </TemperatureContainer>
-      <DateAndTime now={date} />
+      <DateAndTime now={date} displayFormat={settings.clockDisplay} />
     </Root>
   );
 };
