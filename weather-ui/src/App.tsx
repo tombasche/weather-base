@@ -4,6 +4,8 @@ import { TemperatureUnit, WeatherCondition } from './types';
 import styled from 'styled-components';
 import DateAndTime from './components/DateAndTime';
 import Settings from './components/Settings';
+import Loading from './components/Loading';
+import ErrorBanner from './components/ErrorBanner';
 
 type Props = {
   fetchMethod: () => Promise<WeatherCondition>;
@@ -25,7 +27,7 @@ const DEFAULT_TEMPERATURE_UNIT = 'CELSIUS';
 
 const App = ({ fetchMethod }: Props) => {
   const [data, setData] = React.useState<WeatherCondition>();
-  const [error, setError] = React.useState<string>();
+  const [error, setError] = React.useState<Error>();
 
   const [date, setDate] = React.useState<Date>(new Date());
 
@@ -38,15 +40,17 @@ const App = ({ fetchMethod }: Props) => {
   React.useEffect(() => {
     fetchMethod()
       .then((response) => setData(response))
-      .catch((e) => setError(e.message));
+      .catch((e) => {
+        setError(e);
+      });
   }, [fetchMethod]);
 
   if (error !== undefined) {
-    return <div>{error}</div>;
+    return <ErrorBanner error={error} />;
   }
 
   if (data === undefined) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (

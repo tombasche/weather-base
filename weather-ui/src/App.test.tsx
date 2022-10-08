@@ -29,6 +29,7 @@ describe('main page', () => {
   it('shows something to indicate it is loading', async () => {
     const fetchMethod = jest.fn(() => new Promise(() => weatherCondition));
 
+    // @ts-ignore
     render(<App fetchMethod={fetchMethod} />);
 
     const loading = await screen.findByText(/Loading/);
