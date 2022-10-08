@@ -1,9 +1,9 @@
 import React from 'react';
 import Temperature from './components/Temperature';
-import { TemperatureUnit, WeatherCondition } from './types';
+import { Settings, WeatherCondition } from './types';
 import styled from 'styled-components';
 import DateAndTime from './components/DateAndTime';
-import Settings from './components/Settings';
+import SettingsModal from './components/SettingsModal';
 import Loading from './components/Loading';
 import ErrorBanner from './components/ErrorBanner';
 
@@ -25,13 +25,18 @@ const TemperatureContainer = styled.div`
 const TIME_UPDATE_INTERVAL = 30_000; // 30 seconds
 const DEFAULT_TEMPERATURE_UNIT = 'CELSIUS';
 
+const DEFAULT_SETTINGS: Settings = {
+  temperatureUnit: DEFAULT_TEMPERATURE_UNIT,
+  clockDisplay: '12H',
+};
+
 const App = ({ fetchMethod }: Props) => {
   const [data, setData] = React.useState<WeatherCondition>();
   const [error, setError] = React.useState<Error>();
 
   const [date, setDate] = React.useState<Date>(new Date());
 
-  const [unit] = React.useState<TemperatureUnit>(DEFAULT_TEMPERATURE_UNIT);
+  const [settings, updateSettings] = React.useState<Settings>(DEFAULT_SETTINGS);
 
   React.useEffect(() => {
     setInterval(() => setDate(new Date()), TIME_UPDATE_INTERVAL);
@@ -55,9 +60,15 @@ const App = ({ fetchMethod }: Props) => {
 
   return (
     <Root>
-      <Settings updateSettings={() => console.log('nothing to see here')} />
+      <SettingsModal
+        currentSettings={settings}
+        onUpdate={(newSettings) => updateSettings(newSettings)}
+      />
       <TemperatureContainer>
-        <Temperature temperature={data.temperature_c} unit={unit} />
+        <Temperature
+          temperature={data.temperature_c}
+          unit={settings.temperatureUnit}
+        />
       </TemperatureContainer>
       <DateAndTime now={date} />
     </Root>

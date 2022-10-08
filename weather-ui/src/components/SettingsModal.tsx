@@ -2,7 +2,7 @@ import React from 'react';
 import Cog from '../images/Cog';
 import styled from 'styled-components';
 import Modal from './Modal';
-import Toggle from './Toggle';
+import { Settings, TemperatureUnit } from '../types';
 
 const Root = styled.div`
   position: absolute;
@@ -19,13 +19,12 @@ const SettingsButton = styled.span`
 `;
 
 type Props = {
-  updateSettings: () => void;
+  currentSettings: Settings;
+  onUpdate: (s: Settings) => void;
 };
 
-const Settings = ({ updateSettings }: Props) => {
+const SettingsModal = ({ currentSettings, onUpdate }: Props) => {
   const [modalOpen, setModalOpen] = React.useState<boolean>(false);
-
-  const [isToggled, setIsToggled] = React.useState<boolean>(false);
 
   return (
     <Root>
@@ -41,7 +40,13 @@ const Settings = ({ updateSettings }: Props) => {
           <div>
             <select
               data-testid="temperature-unit-select"
-              onChange={() => updateSettings()}
+              value={currentSettings.temperatureUnit}
+              onChange={(e) =>
+                onUpdate({
+                  ...currentSettings,
+                  temperatureUnit: e.target.value as TemperatureUnit,
+                })
+              }
             >
               <option value="CELSIUS">Celsius</option>
               <option value="FAHRENHEIT">Fahrenheit (F)</option>
@@ -50,10 +55,20 @@ const Settings = ({ updateSettings }: Props) => {
             Temperature unit
           </div>
           <div>
-            <Toggle
-              toggled={isToggled}
-              onToggle={() => setIsToggled(!isToggled)}
-            />
+            <label>
+              <input
+                type="checkbox"
+                role="switch"
+                checked={currentSettings.clockDisplay === '12H'}
+                onChange={(e) =>
+                  onUpdate({
+                    ...currentSettings,
+                    clockDisplay:
+                      currentSettings.clockDisplay === '12H' ? '24H' : '12H',
+                  })
+                }
+              />
+            </label>
             Use 12-hour time
           </div>
         </Content>
@@ -62,4 +77,4 @@ const Settings = ({ updateSettings }: Props) => {
   );
 };
 
-export default Settings;
+export default SettingsModal;
