@@ -5,7 +5,7 @@ import { WeatherCondition } from './types';
 
 describe('main page', () => {
   const weatherCondition: WeatherCondition = {
-    timestamp: '2022-09-27T16:57:58',
+    timestamp: '2022-09-27T16:57:58Z',
     altitude_m: '-79.2500991821289',
     pressure_pa: '100943.03125',
     temperature_c: '24.928709030151367',
@@ -32,10 +32,7 @@ describe('main page', () => {
     render(<App fetchMethod={fetchMethod} />);
 
     const lastUpdated = await screen.findByText(/Last updated/);
-
-    expect(lastUpdated.textContent).toContain('2022-09-27T16:57:58');
-
-    expect(fetchMethod.mock.calls.length).toBe(1);
+    expect(lastUpdated).toBeInTheDocument();
   });
 
   it('shows something to indicate it is loading', async () => {
@@ -55,6 +52,18 @@ describe('main page', () => {
     render(<App fetchMethod={fetchMethod} />);
 
     const error = await screen.findByText('An error occurred');
+    expect(error).toBeInTheDocument();
+  });
+
+  it('shows something if the response is null', async () => {
+    const fetchMethod = jest.fn(() => Promise.resolve(null));
+
+    // @ts-ignore
+    render(<App fetchMethod={fetchMethod} />);
+
+    const error = await screen.findByText(
+      /There doesn't appear to be any data :\(/,
+    );
     expect(error).toBeInTheDocument();
   });
 });

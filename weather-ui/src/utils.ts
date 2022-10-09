@@ -14,3 +14,7 @@ export const to_unit = (value: number, unit: TemperatureUnit): number => {
       return value;
   }
 };
+
+export const convertToLocalTime = (utcDate: Date): Date => {
+  return new Date(utcDate);
+};

@@ -25,20 +25,33 @@ const BlinkingColon = styled.span`
 `;
 
 const DateAndTime = ({ now, displayFormat }: Props) => {
+  const amPm = (hours: number) => {
+    if (hours === 0) return 'am';
+    if (hours === 12) return 'pm';
+
+    return hours > 12 ? 'pm' : 'am';
+  };
+
+  const hours12h = (hours: number) => {
+    if (hours === 0) return 0;
+    if (hours === 12) return 12;
+
+    return hours % 12;
+  };
+
   const time = () => {
     const hours = now.getHours();
-    const amPm = hours > 12 ? 'pm' : 'am';
 
     const minutes = now.getMinutes();
     const leadingZero = minutes < 10 ? '0' : '';
 
     return (
       <span>
-        {hours % 12}
+        {hours12h(hours)}
         <BlinkingColon>:</BlinkingColon>
         {leadingZero}
         {minutes}
-        {amPm}{' '}
+        {amPm(hours)}{' '}
       </span>
     );
   };

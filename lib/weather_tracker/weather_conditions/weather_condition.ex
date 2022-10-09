@@ -17,7 +17,7 @@ defmodule WeatherTracker.WeatherConditions.WeatherCondition do
   @derive {Jason.Encoder, only: @required_fields}
   @primary_key false
   schema "weather_conditions" do
-    field :timestamp, :naive_datetime
+    field :timestamp, :utc_datetime
     field :altitude_m, :decimal
     field :pressure_pa, :decimal
     field :temperature_c, :decimal

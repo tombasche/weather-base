@@ -17,7 +17,7 @@ defmodule WeatherTrackerWeb.Server do
         Logger.debug("Successfully created a weather condition entry")
 
         WeatherConditionEventResponse.new(
-          timestamp: NaiveDateTime.to_string(weather_condition.timestamp)
+          timestamp: DateTime.to_string(weather_condition.timestamp)
         )
 
       error ->
