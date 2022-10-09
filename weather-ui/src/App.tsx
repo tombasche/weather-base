@@ -23,7 +23,7 @@ const TemperatureContainer = styled.div`
 `;
 
 const TIME_UPDATE_INTERVAL = 30_000; // 30 seconds
-const DATA_REFRESH_INTERVAL = 60_000; // Every minute
+const DATA_REFRESH_INTERVAL = 30_000; // 30 seconds
 const DEFAULT_TEMPERATURE_UNIT = 'CELSIUS';
 
 const DEFAULT_SETTINGS: Settings = {
