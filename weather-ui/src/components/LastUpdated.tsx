@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { convertToLocalTime } from '../utils';
 
 const Root = styled.div`
   position: absolute;

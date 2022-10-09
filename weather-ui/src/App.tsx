@@ -25,7 +25,7 @@ const TemperatureContainer = styled.div`
 `;
 
 const TIME_UPDATE_INTERVAL = 30_000; // 30 seconds
-const DATA_REFRESH_INTERVAL = 30_000; // 30 seconds
+const DATA_REFRESH_INTERVAL = 10_000; // 10 seconds
 const DEFAULT_TEMPERATURE_UNIT = 'CELSIUS';
 
 const DEFAULT_SETTINGS: Settings = {
