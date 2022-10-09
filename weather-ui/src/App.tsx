@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import DateAndTime from './components/DateAndTime';
 import Loading from './components/Loading';
 import ErrorBanner from './components/ErrorBanner';
+import useInterval from './api/useInterval';
 
 type Props = {
   fetchMethod: () => Promise<WeatherCondition>;
@@ -22,6 +23,7 @@ const TemperatureContainer = styled.div`
 `;
 
 const TIME_UPDATE_INTERVAL = 30_000; // 30 seconds
+const DATA_REFRESH_INTERVAL = 60_000; // Every minute
 const DEFAULT_TEMPERATURE_UNIT = 'CELSIUS';
 
 const DEFAULT_SETTINGS: Settings = {
@@ -41,11 +43,19 @@ const App = ({ fetchMethod }: Props) => {
     setInterval(() => setDate(new Date()), TIME_UPDATE_INTERVAL);
   }, []);
 
+  // initial fetch
   React.useEffect(() => {
     fetchMethod()
       .then((response) => setData(response))
       .catch((e) => setError(e));
   }, [fetchMethod]);
+
+  // Fetch every n milliseconds
+  useInterval(async () => {
+    fetchMethod()
+      .then((response) => setData(response))
+      .catch((e) => setError(e));
+  }, DATA_REFRESH_INTERVAL);
 
   if (error !== undefined) {
     return <ErrorBanner error={error} />;

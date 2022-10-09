@@ -1,7 +1,7 @@
 import { TemperatureUnit } from './types';
 
 export const round = (value: string): number => {
-  return Number((+value).toPrecision(2));
+  return Number((+value).toPrecision(4));
 };
 
 export const to_unit = (value: number, unit: TemperatureUnit): number => {

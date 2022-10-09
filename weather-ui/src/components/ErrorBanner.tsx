@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { HttpError } from '../api/fetchLatestData';
 
 type Props = {
-  error: HttpError;
+  error: Error;
 };
 
 const Root = styled.div`
