@@ -1,4 +1,4 @@
-import { round, to_unit } from './utils';
+import { round, toUnit } from './utils';
 
 describe('rounding', () => {
   it('rounds a string to significant figure', () => {
@@ -10,16 +10,16 @@ describe('rounding', () => {
 describe('temperature conversion', () => {
   it('converts celsius to fahrenheit', () => {
     const temperature = 0;
-    expect(to_unit(temperature, 'FAHRENHEIT')).toBe(32);
+    expect(toUnit(temperature, 'FAHRENHEIT')).toBe(32);
   });
 
   it('converts celsius to kelvin', () => {
     const temperature = 0;
-    expect(to_unit(temperature, 'KELVIN')).toBe(273.15);
+    expect(toUnit(temperature, 'KELVIN')).toBe(273.15);
   });
 
   it('returns unchanged value celsius to celsius', () => {
     const temperature = 0;
-    expect(to_unit(temperature, 'CELSIUS')).toBe(0);
+    expect(toUnit(temperature, 'CELSIUS')).toBe(0);
   });
 });
