@@ -6,6 +6,7 @@ import DateAndTime from './components/DateAndTime';
 import Loading from './components/Loading';
 import ErrorBanner from './components/ErrorBanner';
 import useInterval from './api/useInterval';
+import LastUpdated from './components/LastUpdated';
 
 type Props = {
   fetchMethod: () => Promise<WeatherCondition>;
@@ -74,6 +75,7 @@ const App = ({ fetchMethod }: Props) => {
         />
       </TemperatureContainer>
       <DateAndTime now={date} displayFormat={settings.clockDisplay} />
+      <LastUpdated />
     </Root>
   );
 };

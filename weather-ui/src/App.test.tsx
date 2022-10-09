@@ -26,6 +26,18 @@ describe('main page', () => {
     expect(fetchMethod.mock.calls.length).toBe(1);
   });
 
+  it('displays last update time', async () => {
+    const fetchMethod = jest.fn(() => Promise.resolve(weatherCondition));
+
+    render(<App fetchMethod={fetchMethod} />);
+
+    const lastUpdated = await screen.findByText(/Last updated/);
+
+    expect(lastUpdated.textContent).toContain('2022-09-27T16:57:58');
+
+    expect(fetchMethod.mock.calls.length).toBe(1);
+  });
+
   it('shows something to indicate it is loading', async () => {
     const fetchMethod = jest.fn(() => new Promise(() => weatherCondition));
 
