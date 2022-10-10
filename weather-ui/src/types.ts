@@ -6,6 +6,7 @@ export type WeatherCondition = {
   humidity_rh: string;
   dew_point_c: string;
   gas_resistance_ohms: string;
+  pressure_pa_historical: number[];
 };
 
 export type TemperatureUnit = 'CELSIUS' | 'FAHRENHEIT' | 'KELVIN';

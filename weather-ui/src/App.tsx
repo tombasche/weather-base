@@ -9,6 +9,7 @@ import useInterval from './api/useInterval';
 import LastUpdated from './components/LastUpdated';
 import NoData from './components/NoData';
 import FeelsLike from './components/FeelsLike';
+import Chart from './components/Chart';
 
 type Props = {
   fetchMethod: () => Promise<WeatherCondition>;
@@ -84,6 +85,7 @@ const App = ({ fetchMethod }: Props) => {
           unit={settings.temperatureUnit}
         />
         <FeelsLike data={data} />
+        <Chart values={data.pressure_pa_historical} />
       </TemperatureContainer>
       <DateAndTime now={date} displayFormat={settings.clockDisplay} />
       <LastUpdated timestamp={data.timestamp} />

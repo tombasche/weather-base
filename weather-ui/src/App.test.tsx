@@ -12,6 +12,7 @@ describe('main page', () => {
     humidity_rh: '54.518096923828125',
     dew_point_c: '15.131230354309082',
     gas_resistance_ohms: '50009.390625',
+    pressure_pa_historical: [10100, 101600, 101700, 101200],
   };
 
   it('displays core information', async () => {
