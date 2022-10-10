@@ -21,6 +21,10 @@ const Root = styled.div`
 `;
 
 const TemperatureContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   top: 25%;
 `;
