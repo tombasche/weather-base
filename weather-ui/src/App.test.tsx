@@ -14,25 +14,21 @@ describe('main page', () => {
     gas_resistance_ohms: '50009.390625',
   };
 
-  it('displays temperature', async () => {
+  it('displays core information', async () => {
     const fetchMethod = jest.fn(() => Promise.resolve(weatherCondition));
 
     render(<App fetchMethod={fetchMethod} />);
 
-    const temperature = await screen.findByText(/°/);
-
-    expect(temperature.textContent).toBe('25°');
-
-    expect(fetchMethod.mock.calls.length).toBe(1);
-  });
-
-  it('displays last update time', async () => {
-    const fetchMethod = jest.fn(() => Promise.resolve(weatherCondition));
-
-    render(<App fetchMethod={fetchMethod} />);
+    const temperature = await screen.findByText(/25°/);
+    expect(temperature).toBeInTheDocument();
 
     const lastUpdated = await screen.findByText(/Last updated/);
     expect(lastUpdated).toBeInTheDocument();
+
+    const feelsLike = await screen.findByText(/Feels like/);
+    expect(feelsLike).toBeInTheDocument();
+
+    expect(fetchMethod.mock.calls.length).toBe(1);
   });
 
   it('shows something to indicate it is loading', async () => {

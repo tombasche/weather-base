@@ -1,4 +1,4 @@
-import { round, toUnit } from './utils';
+import { feelsLike, round, toCelsiusFromFahrenheit, toUnit } from './utils';
 
 describe('rounding', () => {
   it('rounds a string to significant figure', () => {
@@ -21,5 +21,19 @@ describe('temperature conversion', () => {
   it('returns unchanged value celsius to celsius', () => {
     const temperature = 0;
     expect(toUnit(temperature, 'CELSIUS')).toBe(0);
+  });
+
+  it('converts from fahrenheit back to celsius', () => {
+    const temperature = 32;
+    expect(toCelsiusFromFahrenheit(temperature)).toBe(0);
+  });
+});
+
+describe('feels like', () => {
+  it('calculate heat index', () => {
+    const temperature = 32;
+    const relative_humidity = 85;
+
+    expect(feelsLike(temperature, relative_humidity)).toBe(46);
   });
 });
