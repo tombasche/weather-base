@@ -85,7 +85,6 @@ const App = ({ fetchMethod }: Props) => {
           unit={settings.temperatureUnit}
         />
         <FeelsLike data={data} />
-        <Chart values={data.pressure_pa_historical} />
       </TemperatureContainer>
       <DateAndTime now={date} displayFormat={settings.clockDisplay} />
       <LastUpdated timestamp={data.timestamp} />
