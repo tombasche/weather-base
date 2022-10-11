@@ -10,7 +10,8 @@ import LastUpdated from './components/LastUpdated';
 import NoData from './components/NoData';
 import FeelsLike from './components/FeelsLike';
 import Humidity from './components/Humidity';
-import { round } from './utils';
+import { round, timeOfDay } from './utils';
+import TimeOfDay from './components/TimeOfDayIndicator';
 
 type Props = {
   fetchMethod: () => Promise<WeatherCondition>;
@@ -92,8 +93,7 @@ const App = ({ fetchMethod }: Props) => {
   return (
     <Root>
       <TopBanner>
-        <div>Here is a moon logo</div>
-        <div>Here is another thing</div>
+        <TimeOfDay timeOfDay={timeOfDay(date)} />
         <Humidity humidity={round(data.humidity_rh)} />
       </TopBanner>
       <TemperatureContainer>
