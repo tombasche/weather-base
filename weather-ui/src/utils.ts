@@ -43,9 +43,14 @@ export const feelsLike = (
 };
 
 export const timeOfDay = (timestamp: Date) => {
+  const month = timestamp.getMonth() + 1;
+  const isSummer = month > 5 && month <= 8;
+
   const hours = timestamp.getUTCHours();
 
   if (hours >= 12 && hours < 17) return 'DAY';
+  if (hours >= 19 && isSummer) return 'DAY';
   if (hours >= 17) return 'NIGHT';
+
   return 'MORNING';
 };

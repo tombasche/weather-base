@@ -68,4 +68,14 @@ describe('time of day', () => {
 
     expect(result).toBe('NIGHT');
   });
+
+  describe('summer', () => {
+    it('when its still light out', () => {
+      const timestamp = new Date('2022-06-27T19:57:58Z');
+
+      const result = timeOfDay(timestamp);
+
+      expect(result).toBe('DAY');
+    });
+  });
 });
