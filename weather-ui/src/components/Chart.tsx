@@ -1,3 +1,15 @@
+/*
+
+    This component isn't used anywhere, but I'd like to keep it
+    in case I find a use for it. It looks pretty nice honestly, but
+    we'd have to have the backend aggregate data and send it back along with the regular payload
+    and it seems kind of weird to be honest.
+
+    Maybe a separate endpoint for the aggregated data might be best, in which case
+    there'd have to be some re-architecting (as I assumed only a single endpoint or 'fetchMethod' would
+    service the UI).
+
+*/
 import React from 'react';
 
 type CommaSeparatedValues = string;

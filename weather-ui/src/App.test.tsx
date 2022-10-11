@@ -28,6 +28,9 @@ describe('main page', () => {
     const feelsLike = await screen.findByText(/Feels like/);
     expect(feelsLike).toBeInTheDocument();
 
+    const humidity = await screen.findByText(/%/);
+    expect(humidity).toBeInTheDocument();
+
     expect(fetchMethod.mock.calls.length).toBe(1);
   });
 

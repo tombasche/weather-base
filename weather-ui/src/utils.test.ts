@@ -1,4 +1,10 @@
-import { feelsLike, round, toCelsiusFromFahrenheit, toUnit } from './utils';
+import {
+  feelsLike,
+  round,
+  timeOfDay,
+  toCelsiusFromFahrenheit,
+  toUnit,
+} from './utils';
 
 describe('rounding', () => {
   it('rounds a string to significant figure', () => {
@@ -35,5 +41,31 @@ describe('feels like', () => {
     const relative_humidity = 85;
 
     expect(feelsLike(temperature, relative_humidity)).toBe(46);
+  });
+});
+
+describe('time of day', () => {
+  it('tells when it is morning', () => {
+    const timestamp = new Date('2022-09-27T10:57:58Z');
+
+    const result = timeOfDay(timestamp);
+
+    expect(result).toBe('MORNING');
+  });
+
+  it('tells when it is day / afternoon', () => {
+    const timestamp = new Date('2022-09-27T12:57:58Z');
+
+    const result = timeOfDay(timestamp);
+
+    expect(result).toBe('DAY');
+  });
+
+  it('tells when it is night', () => {
+    const timestamp = new Date('2022-09-27T17:57:58Z');
+
+    const result = timeOfDay(timestamp);
+
+    expect(result).toBe('NIGHT');
   });
 });

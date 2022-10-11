@@ -9,7 +9,8 @@ import useInterval from './api/useInterval';
 import LastUpdated from './components/LastUpdated';
 import NoData from './components/NoData';
 import FeelsLike from './components/FeelsLike';
-import Chart from './components/Chart';
+import Humidity from './components/Humidity';
+import { round } from './utils';
 
 type Props = {
   fetchMethod: () => Promise<WeatherCondition>;
@@ -28,6 +29,17 @@ const TemperatureContainer = styled.div`
   align-items: center;
   position: absolute;
   top: 25%;
+`;
+
+const TopBanner = styled.div`
+  position: absolute;
+  gap: 15px;
+  top: 25px;
+  left: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-flow: row;
 `;
 
 const TIME_UPDATE_INTERVAL = 30_000; // 30 seconds
@@ -79,6 +91,11 @@ const App = ({ fetchMethod }: Props) => {
 
   return (
     <Root>
+      <TopBanner>
+        <div>Here is a moon logo</div>
+        <div>Here is another thing</div>
+        <Humidity humidity={round(data.humidity_rh)} />
+      </TopBanner>
       <TemperatureContainer>
         <Temperature
           temperature={data.temperature_c}

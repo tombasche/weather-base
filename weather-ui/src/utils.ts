@@ -41,3 +41,11 @@ export const feelsLike = (
       0.00000199 * tempF ** 2 * relativeHumidity ** 2,
   );
 };
+
+export const timeOfDay = (timestamp: Date) => {
+  const hours = timestamp.getUTCHours();
+
+  if (hours >= 12 && hours < 17) return 'DAY';
+  if (hours >= 17) return 'NIGHT';
+  return 'MORNING';
+};
