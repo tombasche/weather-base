@@ -11,7 +11,8 @@ defmodule WeatherTrackerWeb.WeatherConditionsGetLatestTest do
       temperature_c: 15,
       humidity_rh: 50,
       dew_point_c: 4,
-      gas_resistance_ohms: 2000
+      gas_resistance_ohms: 2000,
+      source: "outside"
     })
 
     create_new(%{
@@ -21,7 +22,8 @@ defmodule WeatherTrackerWeb.WeatherConditionsGetLatestTest do
       temperature_c: 15,
       humidity_rh: 50,
       dew_point_c: 4,
-      gas_resistance_ohms: 2000
+      gas_resistance_ohms: 2000,
+      source: "outside"
     })
 
     result = WeatherConditions.get_latest()
