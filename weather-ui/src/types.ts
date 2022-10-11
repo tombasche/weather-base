@@ -16,3 +16,5 @@ export type Settings = {
   temperatureUnit: TemperatureUnit;
   clockDisplay: ClockDisplay;
 };
+
+export type TimeOfDay = 'MORNING' | 'DAY' | 'NIGHT';

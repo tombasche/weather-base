@@ -1,4 +1,4 @@
-import { TemperatureUnit } from './types';
+import { TemperatureUnit, TimeOfDay } from './types';
 
 export const round = (value: string): number => {
   return Number((+value).toPrecision(2));
@@ -42,7 +42,7 @@ export const feelsLike = (
   );
 };
 
-export const timeOfDay = (timestamp: Date) => {
+export const timeOfDay = (timestamp: Date): TimeOfDay => {
   const month = timestamp.getMonth() + 1;
   const isSummer = month > 5 && month <= 8;
 
