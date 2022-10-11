@@ -12,6 +12,7 @@ defmodule WeatherTracker.Repo.Migrations.SetUpWeatherDataTable do
       add :dew_point_c, :decimal, null: false
       add :humidity_rh, :decimal, null: false
       add :gas_resistance_ohms, :decimal, null: false
+      add :source, :string, null: false
     end
 
     execute("SELECT create_hypertable('weather_conditions', 'timestamp')")

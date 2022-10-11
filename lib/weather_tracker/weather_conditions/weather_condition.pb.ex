@@ -9,6 +9,7 @@ defmodule WeatherConditionEvent do
   field :humidity_rh, 5, type: :float, json_name: "humidityRh"
   field :dew_point_c, 6, type: :float, json_name: "dewPointC"
   field :gas_resistance_ohms, 7, type: :float, json_name: "gasResistanceOhms"
+  field :source, 8, type: :string, json_name: "source"
 end
 
 defmodule WeatherConditionEventResponse do

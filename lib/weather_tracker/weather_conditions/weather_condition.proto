@@ -8,6 +8,7 @@ message WeatherConditionEvent {
   float humidity_rh = 5;
   float dew_point_c = 6;
   float gas_resistance_ohms = 7;
+  string source = 8;
 }
 
 

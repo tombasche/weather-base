@@ -12,7 +12,8 @@ defmodule WeatherTracker.WeatherConditions.WeatherCondition do
     :temperature_c,
     :humidity_rh,
     :dew_point_c,
-    :gas_resistance_ohms
+    :gas_resistance_ohms,
+    :source
   ]
   @derive {Jason.Encoder, only: @required_fields}
   @primary_key false
@@ -24,6 +25,7 @@ defmodule WeatherTracker.WeatherConditions.WeatherCondition do
     field :humidity_rh, :decimal
     field :dew_point_c, :decimal
     field :gas_resistance_ohms, :decimal
+    field :source, :string
   end
 
   def create_changeset(weather_condition, params \\ %{}) do
