@@ -2,24 +2,24 @@ import { render, screen } from '@testing-library/react';
 import Temperature from './Temperature';
 
 describe('temperature', () => {
-  it('celsius', async () => {
+  it('celsius', () => {
     render(<Temperature temperature="26" unit="CELSIUS" />);
 
-    const text = await screen.getByText(/26/);
+    const text = screen.getByText(/26/);
     expect(text.textContent).toBe('26°');
   });
 
-  it('fahrenheit', async () => {
+  it('fahrenheit', () => {
     render(<Temperature temperature="0" unit="FAHRENHEIT" />);
 
-    const text = await screen.getByText(/32/);
+    const text = screen.getByText(/32/);
     expect(text.textContent).toBe('32°F');
   });
 
-  it('kelvin', async () => {
+  it('kelvin', () => {
     render(<Temperature temperature="0" unit="KELVIN" />);
 
-    const text = await screen.getByText(/273.15/);
+    const text = screen.getByText(/273.15/);
     expect(text.textContent).toBe('273.15°K');
   });
 });

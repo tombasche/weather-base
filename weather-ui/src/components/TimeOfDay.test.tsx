@@ -18,5 +18,12 @@ describe('time of day', () => {
     const dayIcon = await screen.findByTitle('Day');
     expect(dayIcon).toBeInTheDocument();
   });
-  it('night', () => {});
+  it('night', async () => {
+    const timeOfDay = 'NIGHT';
+
+    render(<TimeOfDay timeOfDay={timeOfDay} />);
+
+    const dayIcon = await screen.findByTitle('Night');
+    expect(dayIcon).toBeInTheDocument();
+  });
 });

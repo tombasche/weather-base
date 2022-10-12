@@ -10,6 +10,7 @@ const NightImage = () => {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 488 488"
     >
+      <title>Night</title>
       <g transform="translate(0 -540.36)">
         <g>
           <g>
