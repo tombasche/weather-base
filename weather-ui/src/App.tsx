@@ -12,6 +12,7 @@ import FeelsLike from './components/FeelsLike';
 import Humidity from './components/Humidity';
 import { round, timeOfDay } from './utils';
 import TimeOfDay from './components/TimeOfDayIndicator';
+import AirQuality from './components/AirQuality';
 
 type Props = {
   fetchMethod: () => Promise<WeatherCondition>;
@@ -95,7 +96,7 @@ const App = ({ fetchMethod }: Props) => {
       <TopBanner>
         <TimeOfDay timeOfDay={timeOfDay(date)} />
         <Humidity humidity={round(data.humidity_rh)} />
-        <div>Air quality is good</div>
+        <AirQuality iaq={data.iaq} />
       </TopBanner>
       <TemperatureContainer>
         <Temperature

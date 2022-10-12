@@ -1,4 +1,5 @@
 import {
+  airQuality,
   feelsLike,
   round,
   timeOfDay,
@@ -77,5 +78,26 @@ describe('time of day', () => {
 
       expect(result).toBe('DAY');
     });
+  });
+});
+
+describe('air quality', () => {
+  it('good', () => {
+    expect(airQuality(25)).toBe('GOOD');
+  });
+  it('moderate', () => {
+    expect(airQuality(95)).toBe('MODERATE');
+  });
+  it('unhealthy for sensitive groups', () => {
+    expect(airQuality(125)).toBe('UNHEALTHY_SENSITIVE');
+  });
+  it('unhealthy', () => {
+    expect(airQuality(175)).toBe('UNHEALTHY');
+  });
+  it('very unhealthy', () => {
+    expect(airQuality(250)).toBe('VERY_UNHEALTHY');
+  });
+  it('hazardous', () => {
+    expect(airQuality(400)).toBe('HAZARDOUS');
   });
 });

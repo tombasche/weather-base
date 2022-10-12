@@ -1,12 +1,10 @@
 export type WeatherCondition = {
   timestamp: string;
-  altitude_m: string;
   pressure_pa: string;
   temperature_c: string;
   humidity_rh: string;
   dew_point_c: string;
-  gas_resistance_ohms: string;
-  source: string;
+  iaq: number;
 };
 
 export type TemperatureUnit = 'CELSIUS' | 'FAHRENHEIT' | 'KELVIN';
@@ -19,3 +17,11 @@ export type Settings = {
 };
 
 export type TimeOfDay = 'MORNING' | 'DAY' | 'NIGHT';
+
+export type AirQualityRating =
+  | 'GOOD'
+  | 'MODERATE'
+  | 'UNHEALTHY_SENSITIVE'
+  | 'UNHEALTHY'
+  | 'VERY_UNHEALTHY'
+  | 'HAZARDOUS';

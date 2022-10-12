@@ -6,13 +6,11 @@ import { WeatherCondition } from './types';
 describe('main page', () => {
   const weatherCondition: WeatherCondition = {
     timestamp: '2022-09-27T16:57:58Z',
-    altitude_m: '-79.2500991821289',
     pressure_pa: '100943.03125',
     temperature_c: '24.928709030151367',
     humidity_rh: '54.518096923828125',
     dew_point_c: '15.131230354309082',
-    gas_resistance_ohms: '50009.390625',
-    source: 'outside',
+    iaq: 12,
   };
 
   it('displays core information', async () => {
