@@ -54,3 +54,5 @@ export const timeOfDay = (timestamp: Date): TimeOfDay => {
 
   return 'MORNING';
 };
+
+export const timestampStringToLastUpdated = (timestamp: string) => {};
