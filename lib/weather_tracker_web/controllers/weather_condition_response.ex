@@ -1,4 +1,6 @@
 defmodule WeatherTrackerWeb.WeatherConditionsResponse do
+  @moduledoc false
+
   defstruct [
     :timestamp,
     :altitude_m,
