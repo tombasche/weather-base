@@ -7,7 +7,10 @@ defmodule WeatherTrackerWeb.WeatherConditionsController do
 
   def get_latest(conn, _params) do
     conn = Plug.Conn.fetch_query_params(conn)
-    source = conn.query_params["source"]
-    conn |> json(WeatherConditions.get_latest_for_source(source))
+
+    case conn.query_params["source"] do
+      nil -> conn |> put_status(400) |> json(%{error: "source must be set"})
+      source -> conn |> json(WeatherConditions.get_latest_for_source(source))
+    end
   end
 end
