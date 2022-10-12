@@ -95,6 +95,7 @@ const App = ({ fetchMethod }: Props) => {
       <TopBanner>
         <TimeOfDay timeOfDay={timeOfDay(date)} />
         <Humidity humidity={round(data.humidity_rh)} />
+        <div>Air quality is good</div>
       </TopBanner>
       <TemperatureContainer>
         <Temperature

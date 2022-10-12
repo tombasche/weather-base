@@ -32,6 +32,9 @@ describe('main page', () => {
     const humidity = await screen.findByText(/%/);
     expect(humidity).toBeInTheDocument();
 
+    const airQuality = await screen.findByText(/Air quality/);
+    expect(airQuality).toBeInTheDocument();
+
     expect(fetchMethod.mock.calls.length).toBe(1);
   });
 

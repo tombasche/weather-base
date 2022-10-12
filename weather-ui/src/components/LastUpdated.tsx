@@ -11,7 +11,7 @@ type Props = {
   timestamp: string;
 };
 
-const LastUpdated = ({ timestamp }: Props) => {
+const timestampToHumanReadable = (timestamp: string): string => {
   const date = new Date(timestamp);
   const hours = date.getHours();
   const amPm = hours >= 12 ? 'pm' : 'am';
@@ -24,12 +24,11 @@ const LastUpdated = ({ timestamp }: Props) => {
     month: 'short',
     year: 'numeric',
   });
+  return `${timeString} ${datePortion}`;
+};
 
-  return (
-    <Root>
-      Last updated {timeString} {datePortion}
-    </Root>
-  );
+const LastUpdated = ({ timestamp }: Props) => {
+  return <Root>Last updated {timestampToHumanReadable(timestamp)}</Root>;
 };
 
 export default LastUpdated;
