@@ -16,7 +16,12 @@ defmodule WeatherTracker.WeatherConditions do
     |> Repo.insert()
   end
 
-  def get_latest() do
-    Repo.one(from wc in WeatherCondition, order_by: [desc: wc.timestamp], limit: 1)
+  def get_latest_for_source(source) do
+    Repo.one(
+      from wc in WeatherCondition,
+        where: wc.source == ^source,
+        order_by: [desc: wc.timestamp],
+        limit: 1
+    )
   end
 end

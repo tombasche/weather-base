@@ -26,7 +26,7 @@ defmodule WeatherTrackerWeb.WeatherConditionsGetLatestTest do
       source: "outside"
     })
 
-    result = WeatherConditions.get_latest()
+    result = WeatherConditions.get_latest_for_source("outside")
     assert result != nil
     assert result.timestamp == ~U[2022-10-04 04:55:17Z]
   end
