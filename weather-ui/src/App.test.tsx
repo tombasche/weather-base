@@ -6,7 +6,7 @@ import { WeatherCondition } from './types';
 describe('main page', () => {
   const weatherCondition: WeatherCondition = {
     timestamp: '2022-09-27T16:57:58Z',
-    temperature_c: 25.2,
+    temperature_c: 25,
     feels_like_c: 22,
     humidity_rh: 54,
     iaq: 12,

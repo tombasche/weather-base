@@ -1,5 +1,6 @@
 defmodule WeatherTrackerWeb.WeatherConditionsResponse do
   @moduledoc false
+  alias WeatherTracker.WeatherConditions.WeatherConditionFormulas
 
   defstruct [
     :timestamp,
@@ -37,7 +38,11 @@ defmodule WeatherTrackerWeb.WeatherConditionsResponse do
             Decimal.to_float(wc.humidity_rh)
           )
         ),
-      feels_like_c: 14
+      feels_like_c:
+        WeatherConditionFormulas.feels_like(
+          Decimal.to_float(wc.temperature_c),
+          Decimal.to_float(wc.humidity_rh)
+        )
     }
   end
 end

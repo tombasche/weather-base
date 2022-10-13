@@ -10,7 +10,7 @@ import LastUpdated from './components/LastUpdated';
 import NoData from './components/NoData';
 import FeelsLike from './components/FeelsLike';
 import Humidity from './components/Humidity';
-import { round, timeOfDay } from './utils';
+import { timeOfDay } from './utils';
 import TimeOfDay from './components/TimeOfDayIndicator';
 import AirQuality from './components/AirQuality';
 

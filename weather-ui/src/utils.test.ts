@@ -1,18 +1,4 @@
-import {
-  airQuality,
-  feelsLike,
-  round,
-  timeOfDay,
-  toCelsiusFromFahrenheit,
-  toUnit,
-} from './utils';
-
-describe('rounding', () => {
-  it('rounds a string to significant figure', () => {
-    const temperature = '24.99234208324';
-    expect(round(temperature)).toBe(25);
-  });
-});
+import { airQuality, timeOfDay, toUnit } from './utils';
 
 describe('temperature conversion', () => {
   it('converts celsius to fahrenheit', () => {
@@ -28,27 +14,6 @@ describe('temperature conversion', () => {
   it('returns unchanged value celsius to celsius', () => {
     const temperature = 0;
     expect(toUnit(temperature, 'CELSIUS')).toBe(0);
-  });
-
-  it('converts from fahrenheit back to celsius', () => {
-    const temperature = 32;
-    expect(toCelsiusFromFahrenheit(temperature)).toBe(0);
-  });
-});
-
-describe('feels like', () => {
-  it('calculates heat index', () => {
-    const temperature = 32;
-    const relative_humidity = 85;
-
-    expect(feelsLike(temperature, relative_humidity)).toBe(46);
-  });
-
-  it('calculates feels like for lower temperatures', () => {
-    const temperature = 11;
-    const relative_humidity = 79;
-
-    expect(feelsLike(temperature, relative_humidity)).toBe(10);
   });
 });
 
