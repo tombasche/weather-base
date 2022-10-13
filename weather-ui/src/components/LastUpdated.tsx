@@ -18,8 +18,7 @@ const hours12h = (hours: number) => {
   return hours % 12;
 };
 
-const timestampToHumanReadable = (timestamp: string): string => {
-  const date = new Date(timestamp);
+const timestampToHumanReadable = (date: Date): string => {
   const amPm = date.getHours() >= 12 ? 'pm' : 'am';
   const minutes = date.getMinutes();
   const leadingZero = minutes < 10 ? '0' : '';
@@ -35,8 +34,21 @@ const timestampToHumanReadable = (timestamp: string): string => {
   return `${timeString} ${datePortion}`;
 };
 
-const LastUpdated = ({ timestamp }: Props) => (
-  <Root>Last updated {timestampToHumanReadable(timestamp)}</Root>
-);
+const tooMuchTimeElapsed = (lastUpdate: Date): boolean => {
+  const now = new Date();
+  const diff = (now.getTime() - lastUpdate.getTime()) / 1000;
+  return diff > 180; // no updates in 3 minutes
+};
+
+const LastUpdated = ({ timestamp }: Props) => {
+  const lastUpdate = new Date(timestamp);
+
+  return (
+    <Root>
+      Last updated {timestampToHumanReadable(lastUpdate)}{' '}
+      {tooMuchTimeElapsed(lastUpdate) && '⚠️'}
+    </Root>
+  );
+};
 
 export default LastUpdated;

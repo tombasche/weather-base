@@ -27,4 +27,12 @@ describe('LastUpdated', () => {
     const time = screen.getByText(/Last updated/);
     expect(time.textContent).toContain('12:53pm 9 Oct 2022');
   });
+
+  it('alerts if too much time has elapsed since the last update', () => {
+    const timestamp = '2022-10-08T09:53:23Z';
+    render(<LastUpdated timestamp={timestamp} />);
+
+    const time = screen.getByText(/Last updated/);
+    expect(time.textContent).toContain('⚠️');
+  });
 });
