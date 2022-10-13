@@ -23,8 +23,8 @@ const readableRating = (rating: AirQualityRating): string => {
   }
 };
 
-const AirQuality = ({ iaq }: Props) => {
-  return <div>Air quality is {readableRating(airQuality(iaq))}</div>;
-};
+const AirQuality = ({ iaq }: Props) => (
+  <div>Air quality is {readableRating(airQuality(iaq))}</div>
+);
 
 export default AirQuality;

@@ -10,8 +10,7 @@ type Props = {
   feelsLike: number;
 };
 
-const FeelsLike = ({ feelsLike }: Props) => {
-  return <Root>Feels like {feelsLike}°</Root>;
-};
-
+const FeelsLike = ({ feelsLike }: Props) => (
+  <Root>Feels like {feelsLike}°</Root>
+);
 export default FeelsLike;

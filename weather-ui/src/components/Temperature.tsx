@@ -23,12 +23,10 @@ const unitIndicator = (unit: TemperatureUnit) => {
   }
 };
 
-const Temperature = ({ temperature, unit }: Props) => {
-  return (
-    <Root>
-      {toUnit(temperature, unit)}°{unitIndicator(unit)}
-    </Root>
-  );
-};
+const Temperature = ({ temperature, unit }: Props) => (
+  <Root>
+    {toUnit(temperature, unit)}°{unitIndicator(unit)}
+  </Root>
+);
 
 export default Temperature;

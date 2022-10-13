@@ -23,15 +23,13 @@ const Banner = styled.div`
   background: rgba(255, 0, 0, 0.2);
 `;
 
-const ErrorBanner = ({ error }: Props) => {
-  return (
-    <Root>
-      <Banner>
-        <h4>{error.message}</h4>
-        <p>{error.toString()}</p>
-      </Banner>
-    </Root>
-  );
-};
+const ErrorBanner = ({ error }: Props) => (
+  <Root>
+    <Banner>
+      <h4>{error.message}</h4>
+      <p>{error.toString()}</p>
+    </Banner>
+  </Root>
+);
 
 export default ErrorBanner;

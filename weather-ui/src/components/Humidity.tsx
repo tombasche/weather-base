@@ -20,14 +20,12 @@ const Text = styled.div`
   align-items: center;
 `;
 
-const Humidity = ({ humidity }: Props) => {
-  return (
-    <Root>
-      <Text>
-        {humidity}% <HumidityImage size={fontSize} />
-      </Text>
-    </Root>
-  );
-};
+const Humidity = ({ humidity }: Props) => (
+  <Root>
+    <Text>
+      {humidity}% <HumidityImage size={fontSize} />
+    </Text>
+  </Root>
+);
 
 export default Humidity;

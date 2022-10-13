@@ -19,8 +19,8 @@ const pickIcon = (timeOfDay: TimeOfDay) => {
   }
 };
 
-const TimeOfDayIndicator = ({ timeOfDay }: Props) => {
-  return <div>{pickIcon(timeOfDay)}</div>;
-};
+const TimeOfDayIndicator = ({ timeOfDay }: Props) => (
+  <div>{pickIcon(timeOfDay)}</div>
+);
 
 export default TimeOfDayIndicator;

@@ -7,8 +7,6 @@ const Root = styled.div`
   top: 25%;
 `;
 
-const Loading = () => {
-  return <Root>Loading ... </Root>;
-};
+const Loading = () => <Root>Loading ... </Root>;
 
 export default Loading;

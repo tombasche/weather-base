@@ -35,8 +35,8 @@ const timestampToHumanReadable = (timestamp: string): string => {
   return `${timeString} ${datePortion}`;
 };
 
-const LastUpdated = ({ timestamp }: Props) => {
-  return <Root>Last updated {timestampToHumanReadable(timestamp)}</Root>;
-};
+const LastUpdated = ({ timestamp }: Props) => (
+  <Root>Last updated {timestampToHumanReadable(timestamp)}</Root>
+);
 
 export default LastUpdated;
