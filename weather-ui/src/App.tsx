@@ -103,7 +103,7 @@ const App = ({ fetchMethod }: Props) => {
           temperature={data.temperature_c}
           unit={settings.temperatureUnit}
         />
-        <FeelsLike data={data} />
+        <FeelsLike feelsLike={data.feels_like_c} />
       </TemperatureContainer>
       <DateAndTime now={date} displayFormat={settings.clockDisplay} />
       <LastUpdated timestamp={data.timestamp} />

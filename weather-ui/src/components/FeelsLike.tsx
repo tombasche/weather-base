@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { WeatherCondition } from '../types';
-import { feelsLike } from '../utils';
 
 const Root = styled.div`
   font-size: 14px;
@@ -9,15 +7,11 @@ const Root = styled.div`
 `;
 
 type Props = {
-  data: WeatherCondition;
+  feelsLike: number;
 };
 
-const FeelsLike = ({ data }: Props) => {
-  const feelsLikeTemperature = feelsLike(
-    +data.temperature_c,
-    +data.humidity_rh,
-  );
-  return <Root>Feels like {feelsLikeTemperature}°</Root>;
+const FeelsLike = ({ feelsLike }: Props) => {
+  return <Root>Feels like {feelsLike}°</Root>;
 };
 
 export default FeelsLike;
