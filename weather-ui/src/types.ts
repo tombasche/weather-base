@@ -1,9 +1,8 @@
 export type WeatherCondition = {
   timestamp: string;
-  pressure_pa: string;
-  temperature_c: string;
-  humidity_rh: string;
-  dew_point_c: string;
+  temperature_c: number;
+  feels_like_c: number;
+  humidity_rh: number;
   iaq: number;
 };
 

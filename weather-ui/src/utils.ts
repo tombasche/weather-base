@@ -29,16 +29,24 @@ export const feelsLike = (
 ): number => {
   const tempF = toUnit(temperature, 'FAHRENHEIT');
 
+  // Rothfusz regression
+  if (tempF >= 80) {
+    return toCelsiusFromFahrenheit(
+      -42.379 +
+        2.049 * tempF +
+        10.1433 * relativeHumidity -
+        0.2248 * tempF * relativeHumidity -
+        0.0068378 * tempF ** 2 -
+        0.05481717 * relativeHumidity ** 2 +
+        0.00122874 * tempF ** 2 * relativeHumidity +
+        0.00085282 * tempF * relativeHumidity ** 2 -
+        0.00000199 * tempF ** 2 * relativeHumidity ** 2,
+    );
+  }
+
+  // Steadman
   return toCelsiusFromFahrenheit(
-    -42.379 +
-      2.049 * tempF +
-      10.1433 * relativeHumidity -
-      0.2248 * tempF * relativeHumidity -
-      0.0068378 * tempF ** 2 -
-      0.05481717 * relativeHumidity ** 2 +
-      0.00122874 * tempF ** 2 * relativeHumidity +
-      0.00085282 * tempF * relativeHumidity ** 2 -
-      0.00000199 * tempF ** 2 * relativeHumidity ** 2,
+    0.5 * (tempF + 61 + (tempF - 68) * 1.2 + relativeHumidity * 0.094),
   );
 };
 

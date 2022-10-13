@@ -37,11 +37,18 @@ describe('temperature conversion', () => {
 });
 
 describe('feels like', () => {
-  it('calculate heat index', () => {
+  it('calculates heat index', () => {
     const temperature = 32;
     const relative_humidity = 85;
 
     expect(feelsLike(temperature, relative_humidity)).toBe(46);
+  });
+
+  it('calculates feels like for lower temperatures', () => {
+    const temperature = 11;
+    const relative_humidity = 79;
+
+    expect(feelsLike(temperature, relative_humidity)).toBe(10);
   });
 });
 

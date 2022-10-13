@@ -1,10 +1,10 @@
 import React from 'react';
-import { round, toUnit } from '../utils';
+import { toUnit } from '../utils';
 import styled from 'styled-components';
 import { TemperatureUnit } from '../types';
 
 type Props = {
-  temperature: string;
+  temperature: number;
   unit: TemperatureUnit;
 };
 
@@ -26,7 +26,7 @@ const unitIndicator = (unit: TemperatureUnit) => {
 const Temperature = ({ temperature, unit }: Props) => {
   return (
     <Root>
-      {toUnit(round(temperature), unit)}°{unitIndicator(unit)}
+      {toUnit(temperature, unit)}°{unitIndicator(unit)}
     </Root>
   );
 };
