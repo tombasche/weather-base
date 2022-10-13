@@ -46,7 +46,7 @@ export const timeOfDay = (timestamp: Date): TimeOfDay => {
   const month = timestamp.getMonth() + 1;
   const isSummer = month > 5 && month <= 8;
 
-  const hours = timestamp.getUTCHours();
+  const hours = timestamp.getHours();
 
   if (hours >= 12 && hours < 17) return 'DAY';
   if (hours >= 19 && isSummer) return 'DAY';

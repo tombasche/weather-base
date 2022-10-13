@@ -47,7 +47,7 @@ describe('feels like', () => {
 
 describe('time of day', () => {
   it('tells when it is morning', () => {
-    const timestamp = new Date('2022-09-27T10:57:58Z');
+    const timestamp = new Date('2022-09-27T8:57:58Z');
 
     const result = timeOfDay(timestamp);
 
