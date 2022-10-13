@@ -15,7 +15,7 @@ defmodule WeatherTrackerWeb.WeatherConditionsFormulasTest do
     temperature = 11
     relative_humidity = 79
 
-    assert WeatherConditionFormulas.feels_like(temperature, relative_humidity) == 10
+    assert WeatherConditionFormulas.feels_like(temperature, relative_humidity) == 7
   end
 
   test "celsius to fahrenheit" do

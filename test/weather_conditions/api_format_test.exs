@@ -19,7 +19,7 @@ defmodule WeatherTrackerWeb.WeatherConditionsApiFormatTest do
     expected_response = %{
       timestamp: ~U[2022-09-04 04:55:17Z],
       temperature_c: 15,
-      feels_like_c: 15,
+      feels_like_c: 12,
       humidity_rh: 80,
       iaq: 11
     }

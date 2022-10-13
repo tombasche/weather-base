@@ -24,7 +24,7 @@ defmodule WeatherTracker.WeatherConditions.WeatherConditionFormulas do
   end
 
   defp steadman(temp_f, relative_humidity) do
-    0.5 * (temp_f + 61 + (temp_f - 68) * 1.2 + relative_humidity * 0.094)
+    0.5 * (temp_f + 61 + (temp_f - 68) * 1.2 + relative_humidity * 0.094) - 5
   end
 
   def feels_like(temperature, relative_humidity) do
