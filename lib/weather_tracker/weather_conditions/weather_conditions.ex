@@ -24,4 +24,8 @@ defmodule WeatherTracker.WeatherConditions do
         limit: 1
     )
   end
+
+  def aggregate_for(source, start_date, end_date) do
+    []
+  end
 end
