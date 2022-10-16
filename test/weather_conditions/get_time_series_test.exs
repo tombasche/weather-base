@@ -20,11 +20,11 @@ defmodule WeatherTrackerWeb.WeatherConditionsGetTimeSeriesTest do
     result =
       WeatherConditions.aggregate_for(
         "outside",
-        ~U[2022-10-03 04:55:17Z],
-        ~U[2022-10-04 04:55:17Z]
+        ~U[2022-10-03 00:00:00Z],
+        ~U[2022-10-04 00:00:00Z]
       )
 
-    assert result != []
+    assert length(result) == 24
   end
 
   defp create_new(attrs) do
@@ -36,7 +36,7 @@ defmodule WeatherTrackerWeb.WeatherConditionsGetTimeSeriesTest do
     date = %{
       year: 2022,
       month: 10,
-      day: 1,
+      day: 3,
       hour: round(24 - minute / 60) |> clamp_hour(),
       minute: (60 - rem(minute, 60)) |> clamp_minute(),
       second: 0,
