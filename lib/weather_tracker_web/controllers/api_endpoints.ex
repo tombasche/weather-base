@@ -23,9 +23,12 @@ defmodule WeatherTrackerWeb.WeatherConditionsController do
   def get_aggregated(conn, _params) do
     conn = Plug.Conn.fetch_query_params(conn)
 
-    args_struct = AggregateArgs.prepare(conn.query_params)
+    args_parse_result =
+      conn.query_params
+      |> AggregateArgs.prepare()
+      |> AggregateArgs.get()
 
-    case AggregateArgs.get(args_struct) do
+    case args_parse_result do
       {:ok, _args} -> conn |> put_status(200) |> json(%{data: []})
       {:error, msg} -> conn |> put_status(400) |> json(%{error: msg})
     end
