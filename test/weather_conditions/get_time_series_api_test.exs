@@ -10,7 +10,7 @@ defmodule WeatherTrackerWeb.WeatherConditionsGetAggregatedApiTest do
     conn =
       conn(
         :get,
-        "/api/weather-conditions-aggregated?source=outside&start_date=2022-10-01&end_date=2022-10-11"
+        "/api/weather-conditions-aggregated?source=outside&start_date=2022-10-01T00:00:00Z&end_date=2022-10-11T00:00:00Z"
       )
 
     response = Router.call(conn, @opts)

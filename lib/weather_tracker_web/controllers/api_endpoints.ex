@@ -29,8 +29,15 @@ defmodule WeatherTrackerWeb.WeatherConditionsController do
       |> AggregateArgs.get()
 
     case args_parse_result do
-      {:ok, _args} -> conn |> put_status(200) |> json(%{data: []})
-      {:error, msg} -> conn |> put_status(400) |> json(%{error: msg})
+      {:ok, args} ->
+        conn
+        |> put_status(200)
+        |> json(%{
+          data: WeatherConditions.aggregate_for(args.source, args.start_date, args.end_date)
+        })
+
+      {:error, msg} ->
+        conn |> put_status(400) |> json(%{error: msg})
     end
   end
 end
