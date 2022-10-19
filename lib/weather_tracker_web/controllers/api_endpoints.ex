@@ -25,7 +25,6 @@ defmodule WeatherTrackerWeb.WeatherConditionsController do
 
     args_parse_result =
       conn.query_params
-      |> AggregateArgs.prepare()
       |> AggregateArgs.get()
 
     case args_parse_result do
