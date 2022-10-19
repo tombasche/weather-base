@@ -1,6 +1,6 @@
 defmodule AggregateArgs do
   @schema %{
-    source: [type: :string, required: true],
+    source: [type: :string, required: true, length: [min: 1]],
     start_date: [type: :utc_datetime, required: true],
     end_date: [type: :utc_datetime, required: true]
   }

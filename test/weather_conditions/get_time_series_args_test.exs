@@ -18,6 +18,24 @@ defmodule WeatherTrackerWeb.WeatherConditionsGetAggregatedArgsTest do
     assert result == {:error, %{source: ["is required"]}}
   end
 
+  test "source must be some value" do
+    args = %{
+      "start_date" => "2022-10-01T00:00:00Z",
+      "source" => "",
+      "end_date" => "2022-10-02T00:00:00Z"
+    }
+
+    result = args |> AggregateArgs.get()
+
+    assert result ==
+             {:error,
+              %{
+                source: [
+                  "length must be greater than or equal to 1"
+                ]
+              }}
+  end
+
   test "start_date is a required param" do
     args = %{"source" => "outside", "end_date" => "2022-10-02T00:00:00Z"}
     result = args |> AggregateArgs.get()
