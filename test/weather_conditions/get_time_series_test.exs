@@ -25,6 +25,8 @@ defmodule WeatherTrackerWeb.WeatherConditionsGetTimeSeriesTest do
       )
 
     assert length(result) == 24
+
+    assert List.first(result).temperature_c != nil
   end
 
   defp create_new(attrs) do
