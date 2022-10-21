@@ -6,8 +6,8 @@ defmodule WeatherTrackerWeb.WeatherConditionsGetAggregatedApiTest do
   alias WeatherTrackerWeb.Router
 
   @opts Router.init([])
-  test "get time series data by source within a date range" do
-    for n <- 1..1440,
+  test "get aggregated data by source within a date range" do
+    for n <- 1..360,
         do:
           create_new(%{
             timestamp: generate_timestamp(n),
@@ -29,7 +29,7 @@ defmodule WeatherTrackerWeb.WeatherConditionsGetAggregatedApiTest do
     conn = Router.call(conn, @opts)
     assert conn.status == 200
     result = json_response(conn, 200)["data"]
-    assert length(result) == 24
+    assert length(result) == 7
   end
 
   defp create_new(attrs) do

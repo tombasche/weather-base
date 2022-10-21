@@ -4,7 +4,7 @@ defmodule WeatherTrackerWeb.WeatherConditionsGetTimeSeriesTest do
   alias WeatherTracker.WeatherConditions
 
   test "get aggregated temperature over time period" do
-    for n <- 1..1440,
+    for n <- 1..360,
         do:
           create_new(%{
             timestamp: generate_timestamp(n),
@@ -24,7 +24,7 @@ defmodule WeatherTrackerWeb.WeatherConditionsGetTimeSeriesTest do
         ~U[2022-10-04 00:00:00Z]
       )
 
-    assert length(result) == 24
+    assert length(result) == 7
 
     assert List.first(result).temperature_c != nil
   end
