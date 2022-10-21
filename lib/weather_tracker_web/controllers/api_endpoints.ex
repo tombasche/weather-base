@@ -6,6 +6,7 @@ defmodule WeatherTrackerWeb.WeatherConditionsController do
   }
 
   alias WeatherTrackerWeb.WeatherConditionsResponse
+  alias WeatherTrackerWeb.WeatherConditionAggregatedResponse
 
   def get_latest(conn, _params) do
     conn = Plug.Conn.fetch_query_params(conn)
@@ -32,7 +33,9 @@ defmodule WeatherTrackerWeb.WeatherConditionsController do
         conn
         |> put_status(200)
         |> json(%{
-          data: WeatherConditions.aggregate_for(args.source, args.start_date, args.end_date)
+          data:
+            WeatherConditions.aggregate_for(args.source, args.start_date, args.end_date)
+            |> Enum.map(&WeatherConditionAggregatedResponse.from_weather_condition/1)
         })
 
       {:error, msg} ->
