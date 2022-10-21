@@ -1,4 +1,6 @@
 defmodule AggregateArgs do
+  @moduledoc false
+
   @schema %{
     source: [type: :string, required: true, length: [min: 1]],
     start_date: [type: :utc_datetime, required: true],
