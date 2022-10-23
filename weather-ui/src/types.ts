@@ -6,6 +6,14 @@ export type WeatherConditionApi = {
   iaq: number;
 };
 
+export type WeatherCondition = {
+  timestamp: Date;
+  temperature: number;
+  feelsLike: number;
+  humidity: number;
+  iaq: number;
+};
+
 export type TemperatureUnit = 'CELSIUS' | 'FAHRENHEIT' | 'KELVIN';
 
 export type ClockDisplay = '24H' | '12H';

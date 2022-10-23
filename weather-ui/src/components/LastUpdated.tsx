@@ -8,7 +8,7 @@ const Root = styled.div`
 `;
 
 type Props = {
-  timestamp: string;
+  lastUpdate: Date;
 };
 
 const hours12h = (hours: number) => {
@@ -40,9 +40,7 @@ const tooMuchTimeElapsed = (lastUpdate: Date): boolean => {
   return diff > 180; // no updates in 3 minutes
 };
 
-const LastUpdated = ({ timestamp }: Props) => {
-  const lastUpdate = new Date(timestamp);
-
+const LastUpdated = ({ lastUpdate }: Props) => {
   return (
     <Root>
       Last updated {timestampToHumanReadable(lastUpdate)}{' '}

@@ -1,6 +1,6 @@
 import React from 'react';
 import Temperature from './components/Temperature';
-import { Settings, WeatherConditionApi } from './types';
+import { Settings, WeatherCondition } from './types';
 import styled from 'styled-components';
 import DateAndTime from './components/DateAndTime';
 import Loading from './components/Loading';
@@ -15,7 +15,7 @@ import TimeOfDay from './components/TimeOfDayIndicator';
 import AirQuality from './components/AirQuality';
 
 type Props = {
-  fetchMethod: () => Promise<WeatherConditionApi>;
+  fetchMethod: () => Promise<WeatherCondition>;
 };
 
 const Root = styled.div`
@@ -54,7 +54,7 @@ const DEFAULT_SETTINGS: Settings = {
 };
 
 const App = ({ fetchMethod }: Props) => {
-  const [data, setData] = React.useState<WeatherConditionApi>();
+  const [data, setData] = React.useState<WeatherCondition>();
   const [error, setError] = React.useState<Error>();
 
   const [date, setDate] = React.useState<Date>(new Date());
@@ -95,18 +95,18 @@ const App = ({ fetchMethod }: Props) => {
     <Root>
       <TopBanner>
         <TimeOfDay timeOfDay={timeOfDay(date)} />
-        <Humidity humidity={data.humidity_rh} />
+        <Humidity humidity={data.humidity} />
         <AirQuality iaq={data.iaq} />
       </TopBanner>
       <TemperatureContainer>
         <Temperature
-          temperature={data.temperature_c}
+          temperature={data.temperature}
           unit={settings.temperatureUnit}
         />
-        <FeelsLike feelsLike={data.feels_like_c} />
+        <FeelsLike feelsLike={data.feelsLike} />
       </TemperatureContainer>
       <DateAndTime now={date} displayFormat={settings.clockDisplay} />
-      <LastUpdated timestamp={data.timestamp} />
+      <LastUpdated lastUpdate={data.timestamp} />
     </Root>
   );
 };
