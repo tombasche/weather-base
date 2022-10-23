@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
-import { WeatherCondition } from './types';
+import { WeatherConditionApi } from './types';
 
 describe('main page', () => {
-  const weatherCondition: WeatherCondition = {
+  const weatherCondition: WeatherConditionApi = {
     timestamp: '2022-09-27T16:57:58Z',
     temperature_c: 25,
     feels_like_c: 22,

@@ -1,6 +1,6 @@
 import React from 'react';
 import Temperature from './components/Temperature';
-import { Settings, WeatherCondition } from './types';
+import { Settings, WeatherConditionApi } from './types';
 import styled from 'styled-components';
 import DateAndTime from './components/DateAndTime';
 import Loading from './components/Loading';
@@ -15,7 +15,7 @@ import TimeOfDay from './components/TimeOfDayIndicator';
 import AirQuality from './components/AirQuality';
 
 type Props = {
-  fetchMethod: () => Promise<WeatherCondition>;
+  fetchMethod: () => Promise<WeatherConditionApi>;
 };
 
 const Root = styled.div`
@@ -54,7 +54,7 @@ const DEFAULT_SETTINGS: Settings = {
 };
 
 const App = ({ fetchMethod }: Props) => {
-  const [data, setData] = React.useState<WeatherCondition>();
+  const [data, setData] = React.useState<WeatherConditionApi>();
   const [error, setError] = React.useState<Error>();
 
   const [date, setDate] = React.useState<Date>(new Date());

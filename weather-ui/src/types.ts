@@ -1,4 +1,4 @@
-export type WeatherCondition = {
+export type WeatherConditionApi = {
   timestamp: string;
   temperature_c: number;
   feels_like_c: number;
