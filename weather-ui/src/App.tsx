@@ -13,10 +13,7 @@ import Humidity from './components/Humidity';
 import { timeOfDay } from './utils';
 import TimeOfDay from './components/TimeOfDayIndicator';
 import AirQuality from './components/AirQuality';
-
-type Props = {
-  fetchMethod: () => Promise<WeatherCondition>;
-};
+import { fetchLatestData } from './api/fetchLatestData';
 
 const Root = styled.div`
   display: flex;
@@ -53,7 +50,7 @@ const DEFAULT_SETTINGS: Settings = {
   clockDisplay: '12H',
 };
 
-const App = ({ fetchMethod }: Props) => {
+const App = () => {
   const [data, setData] = React.useState<WeatherCondition>();
   const [error, setError] = React.useState<Error>();
 
@@ -67,14 +64,14 @@ const App = ({ fetchMethod }: Props) => {
 
   // initial fetch
   React.useEffect(() => {
-    fetchMethod()
+    fetchLatestData()
       .then((response) => setData(response))
       .catch((e) => setError(e));
-  }, [fetchMethod]);
+  }, [fetchLatestData]);
 
   // Fetch every n milliseconds
   useInterval(async () => {
-    fetchMethod()
+    fetchLatestData()
       .then((response) => setData(response))
       .catch((e) => setError(e));
   }, DATA_REFRESH_INTERVAL);
