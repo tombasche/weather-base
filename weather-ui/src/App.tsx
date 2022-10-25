@@ -7,7 +7,6 @@ import Loading from './components/Loading';
 import ErrorBanner from './components/ErrorBanner';
 import useInterval from './api/useInterval';
 import LastUpdated from './components/LastUpdated';
-import NoData from './components/NoData';
 import FeelsLike from './components/FeelsLike';
 import Humidity from './components/Humidity';
 import { timeOfDay } from './utils';
@@ -82,10 +81,6 @@ const App = () => {
 
   if (data === undefined) {
     return <Loading />;
-  }
-
-  if (data === null) {
-    return <NoData />;
   }
 
   return (

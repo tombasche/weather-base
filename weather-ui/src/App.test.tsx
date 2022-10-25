@@ -1,17 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
-import { WeatherCondition, WeatherConditionApi } from './types';
+import { mswServer } from './mocks/server';
+import { rest } from 'msw';
+import { LATEST_URL } from './api/endpoint';
 
 describe('main page', () => {
-  const weatherCondition: WeatherCondition = {
-    timestamp: new Date(),
-    temperature: 25,
-    feelsLike: 22,
-    humidity: 54,
-    iaq: 12,
-  };
-
   it('displays core information', async () => {
     render(<App />);
 
@@ -31,35 +25,22 @@ describe('main page', () => {
     expect(airQuality).toBeInTheDocument();
   });
 
-  // it('shows something to indicate it is loading', async () => {
-  //   const fetchMethod = jest.fn(() => new Promise(() => weatherCondition));
+  it('shows something to indicate it is loading', async () => {
+    mswServer.use(rest.get(LATEST_URL, (req, res, ctx) => res(ctx.delay(100))));
 
-  //   // @ts-ignore
-  //   render(<App fetchMethod={fetchMethod} />);
+    render(<App />);
 
-  //   const loading = await screen.findByText(/Loading/);
-  //   expect(loading).toBeInTheDocument();
-  // });
+    const loading = await screen.findByText(/Loading/);
+    expect(loading).toBeInTheDocument();
+  });
 
-  // it('shows an error message if loading fails', async () => {
-  //   const fetchMethod = jest.fn(() =>
-  //     Promise.reject({ message: 'An error occurred' }),
-  //   );
-  //   render(<App fetchMethod={fetchMethod} />);
+  it('shows an error message if loading fails', async () => {
+    mswServer.use(
+      rest.get(LATEST_URL, (req, res, ctx) => res(ctx.status(404))),
+    );
+    render(<App />);
 
-  //   const error = await screen.findByText('An error occurred');
-  //   expect(error).toBeInTheDocument();
-  // });
-
-  // it('shows something if the response is null', async () => {
-  //   const fetchMethod = jest.fn(() => Promise.resolve(null));
-
-  //   // @ts-ignore
-  //   render(<App fetchMethod={fetchMethod} />);
-
-  //   const error = await screen.findByText(
-  //     /There doesn't appear to be any data :\(/,
-  //   );
-  //   expect(error).toBeInTheDocument();
-  // });
+    const error = await screen.findByText(/Error/);
+    expect(error).toBeInTheDocument();
+  });
 });

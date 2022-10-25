@@ -1,9 +1,8 @@
 import { rest } from 'msw';
-
-const baseUrl = `${process.env.REACT_APP_WEATHER_BASE_URL}/api`;
+import { AGGREGATED_URL, LATEST_URL } from '../api/endpoint';
 
 export const handlers = [
-  rest.get(`${baseUrl}/weather-conditions`, (req, res, ctx) => {
+  rest.get(LATEST_URL, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
@@ -15,7 +14,7 @@ export const handlers = [
       }),
     );
   }),
-  rest.get(`${baseUrl}/weather-conditions-aggregated`, (req, res, ctx) => {
+  rest.get(AGGREGATED_URL, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
