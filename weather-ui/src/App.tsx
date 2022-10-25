@@ -13,6 +13,7 @@ import { timeOfDay } from './utils';
 import TimeOfDay from './components/TimeOfDayIndicator';
 import AirQuality from './components/AirQuality';
 import { fetchLatestData } from './api/fetchLatestData';
+import Chart from './components/Chart';
 
 const Root = styled.div`
   display: flex;
@@ -66,7 +67,7 @@ const App = () => {
     fetchLatestData()
       .then((response) => setData(response))
       .catch((e) => setError(e));
-  }, [fetchLatestData]);
+  }, []);
 
   // Fetch every n milliseconds
   useInterval(async () => {
@@ -97,6 +98,7 @@ const App = () => {
         />
         <FeelsLike feelsLike={data.feelsLike} />
       </TemperatureContainer>
+      <Chart title="Average temperature" values={[]} />
       <DateAndTime now={date} displayFormat={settings.clockDisplay} />
       <LastUpdated lastUpdate={data.timestamp} />
     </Root>

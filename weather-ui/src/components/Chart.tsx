@@ -19,10 +19,11 @@ const Axis = ({ points }: { points: CommaSeparatedValues }) => (
 );
 
 type Props = {
+  title: string;
   values: number[];
 };
 
-const Chart = ({ values }: Props) => {
+const Chart = ({ title, values }: Props) => {
   const data = values.map((v: number, idx: number) => {
     return { x: idx, y: v };
   });
@@ -51,6 +52,7 @@ const Chart = ({ values }: Props) => {
       width={chartWidth}
       height={chartHeight / 2}
     >
+      <title>{title}</title>
       <Axis points={points} />
     </svg>
   );
