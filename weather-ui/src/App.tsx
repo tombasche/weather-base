@@ -1,6 +1,6 @@
 import React from 'react';
 import Temperature from './components/Temperature';
-import { Settings, WeatherCondition } from './types';
+import { AggregatedTemperature, Settings, WeatherCondition } from './types';
 import styled from 'styled-components';
 import DateAndTime from './components/DateAndTime';
 import Loading from './components/Loading';
@@ -12,7 +12,7 @@ import Humidity from './components/Humidity';
 import { timeOfDay } from './utils';
 import TimeOfDay from './components/TimeOfDayIndicator';
 import AirQuality from './components/AirQuality';
-import { fetchLatestData } from './api/fetchLatestData';
+import { fetchLatestData } from './api/httpCalls';
 import Chart from './components/Chart';
 
 const Root = styled.div`
@@ -54,7 +54,9 @@ const App = () => {
   const [data, setData] = React.useState<WeatherCondition>();
   const [error, setError] = React.useState<Error>();
 
-  const [aggregatedTempData, setAggregatedTempData] = React.useState<AggregatedTemperature[]>([])
+  const [aggregatedTempData, setAggregatedTempData] = React.useState<
+    AggregatedTemperature[]
+  >([]);
 
   const [date, setDate] = React.useState<Date>(new Date());
 
