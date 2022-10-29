@@ -32,3 +32,13 @@ export type AirQualityRating =
   | 'UNHEALTHY'
   | 'VERY_UNHEALTHY'
   | 'HAZARDOUS';
+
+export type AggregatedTemperature = {
+  temperature: number;
+  timestamp: Date;
+};
+
+export type AggregatedTemperatureApi = {
+  temperature_c: number;
+  timestamp: string;
+};

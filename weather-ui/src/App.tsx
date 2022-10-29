@@ -54,6 +54,8 @@ const App = () => {
   const [data, setData] = React.useState<WeatherCondition>();
   const [error, setError] = React.useState<Error>();
 
+  const [aggregatedTempData, setAggregatedTempData] = React.useState<AggregatedTemperature[]>([])
+
   const [date, setDate] = React.useState<Date>(new Date());
 
   const [settings] = React.useState<Settings>(DEFAULT_SETTINGS);

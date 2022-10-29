@@ -1,5 +1,8 @@
-import { weatherConditionFromApi } from './transformers';
-import { WeatherCondition } from './types';
+import {
+  aggregatedTemperatureFromApi,
+  weatherConditionFromApi,
+} from './transformers';
+import { AggregatedTemperature, WeatherCondition } from './types';
 
 describe('WeatherCondition', () => {
   it('can be transformed from the API response', () => {
@@ -21,5 +24,24 @@ describe('WeatherCondition', () => {
 
     const result = weatherConditionFromApi(weatherConditionApiResponse);
     expect(result).toEqual(expectedWeatherCondition);
+  });
+});
+
+describe('AggregatedTemperature', () => {
+  it('can be transformed from the API response', () => {
+    const aggregatedTemperatureApiResponse = {
+      timestamp: '2022-09-27T16:57:58Z',
+      temperature_c: 25,
+    };
+
+    const expectedAggregatedTemperature: AggregatedTemperature = {
+      timestamp: new Date('2022-09-27T16:57:58Z'),
+      temperature: 25,
+    };
+
+    const result = aggregatedTemperatureFromApi(
+      aggregatedTemperatureApiResponse,
+    );
+    expect(result).toEqual(expectedAggregatedTemperature);
   });
 });

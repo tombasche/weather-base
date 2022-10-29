@@ -1,4 +1,9 @@
-import { WeatherCondition, WeatherConditionApi } from './types';
+import {
+  AggregatedTemperature,
+  AggregatedTemperatureApi,
+  WeatherCondition,
+  WeatherConditionApi,
+} from './types';
 
 export const weatherConditionFromApi = (
   apiResponse: WeatherConditionApi,
@@ -9,5 +14,14 @@ export const weatherConditionFromApi = (
     feelsLike: apiResponse.feels_like_c,
     humidity: apiResponse.humidity_rh,
     iaq: apiResponse.iaq,
+  };
+};
+
+export const aggregatedTemperatureFromApi = (
+  apiResponse: AggregatedTemperatureApi,
+): AggregatedTemperature => {
+  return {
+    timestamp: new Date(apiResponse.timestamp),
+    temperature: apiResponse.temperature_c,
   };
 };
