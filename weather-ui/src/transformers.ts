@@ -22,6 +22,6 @@ export const aggregatedTemperatureFromApi = (
 ): AggregatedTemperature => {
   return {
     timestamp: new Date(apiResponse.timestamp),
-    temperature: apiResponse.temperature_c,
+    value: apiResponse.temperature_c,
   };
 };

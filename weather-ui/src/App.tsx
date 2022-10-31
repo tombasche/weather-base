@@ -12,8 +12,8 @@ import Humidity from './components/Humidity';
 import { timeOfDay } from './utils';
 import TimeOfDay from './components/TimeOfDayIndicator';
 import AirQuality from './components/AirQuality';
-import { fetchLatestData } from './api/httpCalls';
-import Chart from './components/Chart';
+import { fetchAggregatedTemperature, fetchLatestData } from './api/httpCalls';
+import LineChart from './components/LineChart';
 
 const Root = styled.div`
   display: flex;
@@ -71,6 +71,10 @@ const App = () => {
     fetchLatestData()
       .then((response) => setData(response))
       .catch((e) => setError(e));
+
+    fetchAggregatedTemperature('2022-10-23T16:00:00Z', '2022-10-25T16:00:00Z')
+      .then((response) => setAggregatedTempData(response))
+      .catch((e) => setError(e));
   }, []);
 
   // Fetch every n milliseconds
@@ -102,7 +106,13 @@ const App = () => {
         />
         <FeelsLike feelsLike={data.feelsLike} />
       </TemperatureContainer>
-      <Chart title="Average temperature" values={[]} />
+      <LineChart
+        title="Average temperature"
+        width={200}
+        height={100}
+        data={aggregatedTempData}
+      />
+      {/* <Chart title="Average temperature" values={aggregatedTempData} /> */}
       <DateAndTime now={date} displayFormat={settings.clockDisplay} />
       <LastUpdated lastUpdate={data.timestamp} />
     </Root>

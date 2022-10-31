@@ -36,7 +36,7 @@ describe('AggregatedTemperature', () => {
 
     const expectedAggregatedTemperature: AggregatedTemperature = {
       timestamp: new Date('2022-09-27T16:57:58Z'),
-      temperature: 25,
+      value: 25,
     };
 
     const result = aggregatedTemperatureFromApi(

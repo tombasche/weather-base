@@ -33,8 +33,13 @@ export type AirQualityRating =
   | 'VERY_UNHEALTHY'
   | 'HAZARDOUS';
 
+export interface TimeSeries {
+  value: number;
+  timestamp: Date;
+}
+
 export type AggregatedTemperature = {
-  temperature: number;
+  value: number;
   timestamp: Date;
 };
 

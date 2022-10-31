@@ -1,31 +1,20 @@
-/*
-
-    This component isn't used anywhere, but I'd like to keep it
-    in case I find a use for it. It looks pretty nice honestly, but
-    we'd have to have the backend aggregate data and send it back along with the regular payload
-    and it seems kind of weird to be honest.
-
-    Maybe a separate endpoint for the aggregated data might be best, in which case
-    there'd have to be some re-architecting (as I assumed only a single endpoint or 'fetchMethod' would
-    service the UI).
-
-*/
 import React from 'react';
+import { TimeSeries } from '../types';
 
 type CommaSeparatedValues = string;
 
 const Axis = ({ points }: { points: CommaSeparatedValues }) => (
-  <polyline fill="none" stroke="#bababa" strokeWidth=".5" points={points} />
+  <polyline fill="none" stroke="#bababa" strokeWidth="2" points={points} />
 );
 
 type Props = {
   title: string;
-  values: number[];
+  values: TimeSeries[];
 };
 
 const Chart = ({ title, values }: Props) => {
-  const data = values.map((v: number, idx: number) => {
-    return { x: idx, y: v };
+  const data = values.map((ts, idx) => {
+    return { x: ts.value, y: idx };
   });
 
   const maximumXFromData = values.length;
@@ -33,7 +22,7 @@ const Chart = ({ title, values }: Props) => {
   const maximumYFromData = Math.max(...data.map((e) => e.y));
 
   const chartWidth = 300;
-  const chartHeight = 5000;
+  const chartHeight = 2000;
   const padding = 20;
 
   const points = data
@@ -45,6 +34,20 @@ const Chart = ({ title, values }: Props) => {
       return `${x},${y}`;
     })
     .join(' ');
+
+  const XAxis = () => (
+    <Axis
+      points={`${padding},${chartHeight - padding} ${chartWidth - padding},${
+        chartHeight - padding
+      }`}
+    />
+  );
+
+  const YAxis = () => (
+    <Axis
+      points={`${padding},${padding} ${padding},${chartHeight - padding}`}
+    />
+  );
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -53,6 +56,8 @@ const Chart = ({ title, values }: Props) => {
       height={chartHeight / 2}
     >
       <title>{title}</title>
+      <XAxis />
+      <YAxis />
       <Axis points={points} />
     </svg>
   );
