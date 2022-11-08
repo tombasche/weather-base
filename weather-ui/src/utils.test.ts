@@ -1,4 +1,4 @@
-import { airQuality, timeOfDay, toUnit } from './utils';
+import { airQuality, dateForXAxisTick, timeOfDay, toUnit } from './utils';
 
 describe('temperature conversion', () => {
   it('converts celsius to fahrenheit', () => {
@@ -71,5 +71,15 @@ describe('air quality', () => {
   });
   it('hazardous', () => {
     expect(airQuality(400)).toBe('HAZARDOUS');
+  });
+});
+
+describe('chart date display for x-axis', () => {
+  it('converts a date into a short format', () => {
+    const timestamp = new Date('2022-09-27T12:57:58Z');
+
+    const result = dateForXAxisTick(timestamp);
+
+    expect(result).toBe('3pm 27 Sept');
   });
 });

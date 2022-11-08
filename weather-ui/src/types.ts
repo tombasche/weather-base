@@ -33,10 +33,12 @@ export type AirQualityRating =
   | 'VERY_UNHEALTHY'
   | 'HAZARDOUS';
 
-export interface TimeSeries {
+interface DataPoint {
   value: number;
   timestamp: Date;
 }
+
+export type TimeSeries = DataPoint[];
 
 export type AggregatedTemperature = {
   value: number;

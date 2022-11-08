@@ -13,7 +13,7 @@ import { timeOfDay } from './utils';
 import TimeOfDay from './components/TimeOfDayIndicator';
 import AirQuality from './components/AirQuality';
 import { fetchAggregatedTemperature, fetchLatestData } from './api/httpCalls';
-import LineChart from './components/LineChart';
+import { TemperatureChart } from './components/TemperatureChart';
 
 const Root = styled.div`
   display: flex;
@@ -105,14 +105,8 @@ const App = () => {
           unit={settings.temperatureUnit}
         />
         <FeelsLike feelsLike={data.feelsLike} />
+        <TemperatureChart data={aggregatedTempData} />
       </TemperatureContainer>
-      <LineChart
-        title="Average temperature"
-        width={200}
-        height={100}
-        data={aggregatedTempData}
-      />
-      {/* <Chart title="Average temperature" values={aggregatedTempData} /> */}
       <DateAndTime now={date} displayFormat={settings.clockDisplay} />
       <LastUpdated lastUpdate={data.timestamp} />
     </Root>

@@ -47,13 +47,4 @@ describe('main page', () => {
       expect(error).toBeInTheDocument();
     });
   });
-
-  describe('aggregated data', () => {
-    it('displays a chart with aggregated temperature', async () => {
-      render(<App />);
-
-      const chart = await screen.findByTitle(/Average temperature/);
-      expect(chart).toBeInTheDocument();
-    });
-  });
 });

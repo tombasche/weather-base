@@ -33,3 +33,20 @@ export const airQuality = (iaq: number): AirQualityRating => {
 
   return 'HAZARDOUS';
 };
+
+export const dateForXAxisTick = (timestamp: Date): string => {
+  const hours12h = (hours: number) => {
+    if (hours === 0) return 0;
+    if (hours === 12) return 12;
+
+    return hours % 12;
+  };
+  const amPm = timestamp.getHours() >= 12 ? 'pm' : 'am';
+  const timeString = `${hours12h(timestamp.getHours())}${amPm}`;
+
+  const date = timestamp.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'short',
+  });
+  return `${timeString} ${date}`;
+};
