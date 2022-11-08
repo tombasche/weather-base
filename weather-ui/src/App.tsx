@@ -23,11 +23,18 @@ const Root = styled.div`
 
 const TemperatureContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   position: absolute;
   top: 25%;
+`;
+
+const TemperatureAndFeelsLike = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const TopBanner = styled.div`
@@ -100,11 +107,13 @@ const App = () => {
         <AirQuality iaq={data.iaq} />
       </TopBanner>
       <TemperatureContainer>
-        <Temperature
-          temperature={data.temperature}
-          unit={settings.temperatureUnit}
-        />
-        <FeelsLike feelsLike={data.feelsLike} />
+        <TemperatureAndFeelsLike>
+          <Temperature
+            temperature={data.temperature}
+            unit={settings.temperatureUnit}
+          />
+          <FeelsLike feelsLike={data.feelsLike} />
+        </TemperatureAndFeelsLike>
         <TemperatureChart data={aggregatedTempData} />
       </TemperatureContainer>
       <DateAndTime now={date} displayFormat={settings.clockDisplay} />

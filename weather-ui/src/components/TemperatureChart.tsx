@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  LineChart,
-  Line,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-} from 'recharts';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
 import { TimeSeries } from '../types';
 import { dateForXAxisTick } from '../utils';
 
