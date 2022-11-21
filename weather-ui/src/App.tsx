@@ -15,6 +15,8 @@ import AirQuality from './components/AirQuality';
 import { fetchAggregatedTemperature, fetchLatestData } from './api/httpCalls';
 import { TemperatureChart } from './components/TemperatureChart';
 
+const BREAKPOINT = '768px';
+
 const Root = styled.div`
   display: flex;
   align-items: center;
@@ -46,6 +48,12 @@ const TopBanner = styled.div`
   align-items: center;
   justify-content: flex-start;
   flex-flow: row;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1px;
+    align-items: flex-start;
+  }
 `;
 
 const TIME_UPDATE_INTERVAL = 30_000; // 30 seconds
@@ -79,6 +87,7 @@ const App = () => {
       .then((response) => setData(response))
       .catch((e) => setError(e));
 
+    // TODO fix this
     fetchAggregatedTemperature('2022-10-23T16:00:00Z', '2022-10-25T16:00:00Z')
       .then((response) => setAggregatedTempData(response))
       .catch((e) => setError(e));
