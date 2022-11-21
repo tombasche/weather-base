@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import { MOBILE_BREAKPOINT } from '../mobile';
 import { ClockDisplay } from '../types';
 
 type Props = {
