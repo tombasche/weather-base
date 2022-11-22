@@ -19,8 +19,8 @@ describe('main page', () => {
       const feelsLike = await screen.findByText(/Feels like/);
       expect(feelsLike).toBeInTheDocument();
 
-      const humidity = await screen.findByText(/%/);
-      expect(humidity).toBeInTheDocument();
+      const humidity = await screen.findAllByText(/%/);
+      expect(humidity[0]).toBeInTheDocument();
 
       const airQuality = await screen.findByText(/Air quality/);
       expect(airQuality).toBeInTheDocument();

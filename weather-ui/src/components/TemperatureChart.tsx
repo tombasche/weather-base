@@ -19,7 +19,7 @@ export const TemperatureChart = ({ data }: Props) => {
       <CartesianGrid stroke="#ccc" strokeDasharray="3 3" />
       <XAxis
         dataKey="timestamp"
-        tickFormatter={(val: Date) => dateForXAxisTick(val)}
+        tickFormatter={(val: Date | null) => (val ? dateForXAxisTick(val) : '')}
       />
       <YAxis />
     </LineChart>

@@ -9,7 +9,7 @@ import useInterval from './api/useInterval';
 import LastUpdated from './components/LastUpdated';
 import FeelsLike from './components/FeelsLike';
 import Humidity from './components/Humidity';
-import { timeOfDay } from './utils';
+import { datesForAggregatedGraphFrom, timeOfDay } from './utils';
 import TimeOfDay from './components/TimeOfDayIndicator';
 import AirQuality from './components/AirQuality';
 import { fetchAggregatedTemperature, fetchLatestData } from './api/httpCalls';
@@ -93,8 +93,7 @@ const App = () => {
       .then((response) => setData(response))
       .catch((e) => setError(e));
 
-    // TODO fix this
-    fetchAggregatedTemperature('2022-10-23T16:00:00Z', '2022-10-25T16:00:00Z')
+    fetchAggregatedTemperature(...datesForAggregatedGraphFrom(new Date()))
       .then((response) => setAggregatedTempData(response))
       .catch((e) => setError(e));
   }, []);

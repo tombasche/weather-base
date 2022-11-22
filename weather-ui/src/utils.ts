@@ -50,3 +50,16 @@ export const dateForXAxisTick = (timestamp: Date): string => {
   });
   return `${timeString} ${date}`;
 };
+
+const TWO_WEEKS = 14;
+
+type AggregatedGraphFromTo = [string, string];
+
+export const datesForAggregatedGraphFrom = (
+  to: Date,
+): AggregatedGraphFromTo => {
+  const toNew = new Date(to.getTime());
+  const from = new Date(to.getTime());
+  from.setDate(to.getDate() - TWO_WEEKS);
+  return [from, toNew].map((d) => d.toISOString()) as AggregatedGraphFromTo;
+};
