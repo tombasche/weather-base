@@ -7,6 +7,12 @@ type Props = {
   data: TimeSeries;
 };
 
+const tickFormatter = (val: Date | string | number): string => {
+  if (typeof val === 'string') return '';
+  if (typeof val === 'number') return '';
+  return dateForXAxisTick(val);
+};
+
 export const TemperatureChart = ({ data }: Props) => {
   return (
     <LineChart
@@ -19,7 +25,9 @@ export const TemperatureChart = ({ data }: Props) => {
       <CartesianGrid stroke="#ccc" strokeDasharray="3 3" />
       <XAxis
         dataKey="timestamp"
-        tickFormatter={(val: Date | null) => (val ? dateForXAxisTick(val) : '')}
+        tickFormatter={(v: Date | string | number) =>
+          v === 'auto' || v === 0 ? '' : tickFormatter(v)
+        }
       />
       <YAxis />
     </LineChart>
