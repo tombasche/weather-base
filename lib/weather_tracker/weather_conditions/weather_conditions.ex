@@ -30,7 +30,8 @@ defmodule WeatherTracker.WeatherConditions do
       "select avg(temperature_c) temperature_c, date_trunc('hour', timestamp) timestamp
       from weather_conditions
       where source = $1 and timestamp > $2 and timestamp < $3
-      group by date_trunc('hour', timestamp)",
+      group by date_trunc('hour', timestamp)
+      order by timestamp asc",
       [source, start_date, end_date],
       WeatherCondition
     )
