@@ -13,7 +13,7 @@ import TimeOfDay from './components/TimeOfDayIndicator';
 import AirQuality from './components/AirQuality';
 import { fetchAggregatedTemperature, fetchLatestData } from './api/httpCalls';
 import { TemperatureChart } from './components/TemperatureChart';
-import { IPAD_BREAKPOINT, MOBILE_BREAKPOINT } from './mobile';
+import { IPAD_BREAKPOINT } from './mobile';
 
 const Root = styled.div`
   display: flex;
@@ -55,12 +55,6 @@ const TopBanner = styled.div`
   align-items: center;
   justify-content: space-around;
   flex-flow: row;
-
-  @media (max-width: ${MOBILE_BREAKPOINT}) {
-    flex-direction: column;
-    gap: 1px;
-    align-items: flex-start;
-  }
 `;
 
 const TIME_UPDATE_INTERVAL = 30_000; // 30 seconds
