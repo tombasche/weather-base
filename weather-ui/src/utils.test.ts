@@ -95,7 +95,7 @@ describe('get dates for aggregated time series', () => {
     const now = new Date('2022-09-27T12:57:58Z');
 
     const result = datesForAggregatedGraphFrom(now);
-    expect(result[0]).toBe('2022-09-13T12:57:58.000Z');
+    expect(result[0]).toBe('2022-09-27T00:57:58.000Z');
     expect(result[1]).toBe('2022-09-27T12:57:58.000Z');
   });
 });

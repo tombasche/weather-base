@@ -47,11 +47,6 @@
     "@types/styled-components": "^5.1.26",
     "msw": "^0.47.4"
   },
-  "jest": {
-    "coveragePathIgnorePatterns": [
-      "src/components/Chart.tsx"
-    ]
-  },
   "msw": {
     "workerDirectory": "public"
   }

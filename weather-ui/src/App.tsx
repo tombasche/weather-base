@@ -14,7 +14,7 @@ import TimeOfDay from './components/TimeOfDayIndicator';
 import AirQuality from './components/AirQuality';
 import { fetchAggregatedTemperature, fetchLatestData } from './api/httpCalls';
 import { TemperatureChart } from './components/TemperatureChart';
-import { MOBILE_BREAKPOINT } from './mobile';
+import { IPAD_BREAKPOINT, MOBILE_BREAKPOINT } from './mobile';
 
 const Root = styled.div`
   display: flex;
@@ -28,9 +28,18 @@ const TemperatureContainer = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 25%;
+  width: 100%;
+  height: 100%;
+  top: 15%;
 
   @media (max-width: ${MOBILE_BREAKPOINT}) {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (min-width: ${IPAD_BREAKPOINT}) {
     flex-direction: column;
     gap: 10px;
     align-items: center;
