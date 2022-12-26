@@ -10,7 +10,7 @@ describe('main page', () => {
     it('displays core information', async () => {
       render(<App />);
 
-      const temperature = await screen.findByText(/25°/);
+      const temperature = await screen.findAllByText(/25°/);
       expect(temperature).toBeInTheDocument();
 
       const lastUpdated = await screen.findByText(/Last updated/);

@@ -10,7 +10,6 @@ const fontSize = '16px';
 
 const Root = styled.div`
   font-size: ${fontSize};
-  width: 100px;
 `;
 
 const Text = styled.div`
@@ -23,7 +22,7 @@ const Text = styled.div`
 const Humidity = ({ humidity }: Props) => (
   <Root>
     <Text>
-      {humidity}% <HumidityImage size={fontSize} />{' '}
+      {humidity}% <HumidityImage size={fontSize} />
     </Text>
   </Root>
 );
