@@ -29,7 +29,7 @@ const TemperatureContainer = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  top: 15%;
+  top: 8%;
 
   @media (max-width: ${IPAD_BREAKPOINT}) {
     flex-direction: column;
