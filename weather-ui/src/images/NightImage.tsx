@@ -3,8 +3,8 @@ import React from 'react';
 const NightImage = () => {
   return (
     <svg
-      fill="#313131"
-      stroke="#313131"
+      fill="#FFFFFF"
+      stroke="#FFFFFF"
       strokeWidth="8"
       width="25px"
       xmlns="http://www.w3.org/2000/svg"

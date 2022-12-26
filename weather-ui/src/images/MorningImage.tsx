@@ -3,7 +3,7 @@ import React from 'react';
 const MorningImage = () => {
   return (
     <svg
-      fill="#313131"
+      fill="#C2C200"
       width="28px"
       viewBox="0 -1.5 27 27"
       xmlns="http://www.w3.org/2000/svg"

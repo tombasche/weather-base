@@ -33,12 +33,7 @@ export const TemperatureChart = ({ data }: Props) => {
     <Container>
       <ResponsiveContainer width="95%" height="80%" maxHeight={500}>
         <LineChart data={data}>
-          <Line
-            type="monotone"
-            dataKey="value"
-            stroke="black"
-            strokeWidth={2}
-          />
+          <Line type="natural" dataKey="value" stroke="white" strokeWidth={2} />
           <CartesianGrid stroke="#ccc" strokeDasharray="3 3" />
           <XAxis
             dataKey="timestamp"
