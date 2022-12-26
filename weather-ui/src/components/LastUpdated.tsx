@@ -1,15 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { MOBILE_BREAKPOINT } from '../mobile';
 
 const Root = styled.div`
   position: absolute;
   top: 25px;
   right: 35px;
-
-  @media (max-width: ${MOBILE_BREAKPOINT}) {
-    bottom: 15px;
-  }
+  font-size: 10px;
 `;
 
 type Props = {
