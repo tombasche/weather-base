@@ -20,15 +20,10 @@ const Text = styled.div`
   align-items: center;
 `;
 
-const Recommendation = styled.p`
-  font-size: 11px;
-`;
-
 const Humidity = ({ humidity }: Props) => (
   <Root>
     <Text>
       {humidity}% <HumidityImage size={fontSize} />{' '}
-      <Recommendation>(40 - 50%)</Recommendation>
     </Text>
   </Root>
 );
