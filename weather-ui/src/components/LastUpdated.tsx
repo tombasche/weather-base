@@ -4,8 +4,8 @@ import { MOBILE_BREAKPOINT } from '../mobile';
 
 const Root = styled.div`
   position: absolute;
-  bottom: 25px;
-  left: 25px;
+  top: 25px;
+  right: 35px;
 
   @media (max-width: ${MOBILE_BREAKPOINT}) {
     bottom: 15px;

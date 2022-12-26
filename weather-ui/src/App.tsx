@@ -2,7 +2,6 @@ import React from 'react';
 import Temperature from './components/Temperature';
 import { AggregatedTemperature, Settings, WeatherCondition } from './types';
 import styled from 'styled-components';
-import DateAndTime from './components/DateAndTime';
 import Loading from './components/Loading';
 import ErrorBanner from './components/ErrorBanner';
 import useInterval from './api/useInterval';
@@ -132,7 +131,6 @@ const App = () => {
         </TemperatureAndFeelsLike>
         <TemperatureChart data={aggregatedTempData} />
       </TemperatureContainer>
-      <DateAndTime now={date} displayFormat={settings.clockDisplay} />
       <LastUpdated lastUpdate={data.timestamp} />
     </Root>
   );
