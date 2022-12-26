@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 const Root = styled.div`
   position: absolute;
-  top: 25px;
-  right: 35px;
-  font-size: 10px;
+  bottom: 25px;
+  left: 25px;
+  font-size: 12px;
 `;
 
 type Props = {
