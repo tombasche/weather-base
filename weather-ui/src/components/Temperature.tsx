@@ -10,6 +10,7 @@ type Props = {
 
 const Root = styled.div`
   font-size: 96px;
+  filter: brightness(125%);
 `;
 
 const unitIndicator = (unit: TemperatureUnit) => {
