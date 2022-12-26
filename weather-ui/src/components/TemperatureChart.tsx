@@ -18,6 +18,8 @@ type Props = {
 const Container = styled.div`
   width: 100%;
   height: 50%;
+
+  margin-left: -24px;
 `;
 
 const tickFormatter = (val: Date | string | number): string => {

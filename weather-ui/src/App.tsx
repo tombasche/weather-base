@@ -32,14 +32,7 @@ const TemperatureContainer = styled.div`
   height: 100%;
   top: 15%;
 
-  @media (max-width: ${MOBILE_BREAKPOINT}) {
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-  }
-
-  @media (min-width: ${IPAD_BREAKPOINT}) {
+  @media (max-width: ${IPAD_BREAKPOINT}) {
     flex-direction: column;
     gap: 10px;
     align-items: center;
