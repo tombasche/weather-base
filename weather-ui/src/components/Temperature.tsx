@@ -26,11 +26,13 @@ const Root = styled.div<RootProps>`
     props.animate
       ? 'linear-gradient(-60deg, #000 30%, #0005, #000 70%) right/300% 100%'
       : 'none'};
-  animation: ${Shimmer} 2.5s;
+  animation: ${Shimmer} 1s;
 
   &:focus {
     animation: ${Shimmer} 1s;
   }
+
+  transition: all 1s;
 
   &:active {
     animation: none;
@@ -56,7 +58,7 @@ const Temperature = ({ temperature, unit }: Props) => {
   React.useEffect(() => {
     setTimeout(() => {
       setAnimate(false);
-    }, 2500);
+    }, 1000);
   }, []);
 
   return (
