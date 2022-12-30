@@ -59,12 +59,8 @@ const TopBanner = styled.div`
 
 const TIME_UPDATE_INTERVAL = 30_000; // 30 seconds
 const DATA_REFRESH_INTERVAL = 10_000; // 10 seconds
+const AGGREGATED_DATA_REFRESH_INTERVAL = 120_000; // 2 minutes
 const DEFAULT_TEMPERATURE_UNIT = 'CELSIUS';
-
-const DEFAULT_SETTINGS: Settings = {
-  temperatureUnit: DEFAULT_TEMPERATURE_UNIT,
-  clockDisplay: '12H',
-};
 
 const App = () => {
   const [data, setData] = React.useState<WeatherCondition>();
@@ -75,8 +71,6 @@ const App = () => {
   >([]);
 
   const [date, setDate] = React.useState<Date>(new Date());
-
-  const [settings] = React.useState<Settings>(DEFAULT_SETTINGS);
 
   React.useEffect(() => {
     setInterval(() => setDate(new Date()), TIME_UPDATE_INTERVAL);
@@ -100,6 +94,13 @@ const App = () => {
       .catch((e) => setError(e));
   }, DATA_REFRESH_INTERVAL);
 
+  // Fetch the aggregated data less often than the latest data
+  useInterval(async () => {
+    fetchAggregatedTemperature(...datesForAggregatedGraphFrom(new Date()))
+      .then((response) => setAggregatedTempData(response))
+      .catch((e) => setError(e));
+  }, AGGREGATED_DATA_REFRESH_INTERVAL);
+
   if (error !== undefined) {
     return <ErrorBanner error={error} />;
   }
@@ -119,7 +120,7 @@ const App = () => {
         <TemperatureAndFeelsLike>
           <Temperature
             temperature={data.temperature}
-            unit={settings.temperatureUnit}
+            unit={DEFAULT_TEMPERATURE_UNIT}
           />
           <FeelsLike feelsLike={data.feelsLike} />
         </TemperatureAndFeelsLike>
