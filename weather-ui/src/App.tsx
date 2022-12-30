@@ -1,6 +1,6 @@
 import React from 'react';
 import Temperature from './components/Temperature';
-import { AggregatedTemperature, Settings, WeatherCondition } from './types';
+import { AggregatedTemperature, WeatherCondition } from './types';
 import styled from 'styled-components';
 import Loading from './components/Loading';
 import ErrorBanner from './components/ErrorBanner';
@@ -13,7 +13,7 @@ import TimeOfDay from './components/TimeOfDayIndicator';
 import AirQuality from './components/AirQuality';
 import { fetchAggregatedTemperature, fetchLatestData } from './api/httpCalls';
 import { TemperatureChart } from './components/TemperatureChart';
-import { IPAD_BREAKPOINT } from './mobile';
+import DashboardLink from './components/DashboardLink';
 
 const Root = styled.div`
   display: flex;
@@ -23,20 +23,14 @@ const Root = styled.div`
 
 const TemperatureContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 10px;
   position: absolute;
   width: 100%;
   height: 100%;
   top: 8%;
-
-  @media (max-width: ${IPAD_BREAKPOINT}) {
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-  }
 `;
 
 const TemperatureAndFeelsLike = styled.div`
@@ -127,6 +121,7 @@ const App = () => {
         <TemperatureChart data={aggregatedTempData} />
       </TemperatureContainer>
       <LastUpdated lastUpdate={data.timestamp} />
+      <DashboardLink />
     </Root>
   );
 };

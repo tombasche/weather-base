@@ -18,11 +18,6 @@ export type TemperatureUnit = 'CELSIUS' | 'FAHRENHEIT' | 'KELVIN';
 
 export type ClockDisplay = '24H' | '12H';
 
-export type Settings = {
-  temperatureUnit: TemperatureUnit;
-  clockDisplay: ClockDisplay;
-};
-
 export type TimeOfDay = 'MORNING' | 'DAY' | 'NIGHT';
 
 export type AirQualityRating =
