@@ -44,3 +44,24 @@ export type AggregatedTemperatureApi = {
   temperature_c: number;
   timestamp: string;
 };
+
+export type Prediction = {
+  snowfall: number[];
+  rain: number[];
+};
+
+export type PredictionApi = {
+  latitude: number;
+  longitude: number;
+  generationtime_ms: number;
+  utc_offset_seconds: number;
+  timezone: string;
+  timezone_abbreviation: string;
+  elevation: number;
+  hourly_units: { time: string; snowfall: string; rain: string };
+  hourly: {
+    time: string[];
+    snowfall: number[];
+    rain: number[];
+  };
+};

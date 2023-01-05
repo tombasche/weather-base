@@ -79,6 +79,8 @@ const App = () => {
     fetchAggregatedTemperature(...datesForAggregatedGraphFrom(new Date()))
       .then((response) => setAggregatedTempData(response))
       .catch((e) => setError(e));
+
+    
   }, []);
 
   // Fetch every n milliseconds
