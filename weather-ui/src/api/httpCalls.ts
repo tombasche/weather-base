@@ -1,16 +1,13 @@
 import {
   aggregatedTemperatureFromApi,
-  predictionFromApi,
   weatherConditionFromApi,
 } from '../transformers';
 import {
   AggregatedTemperature,
   AggregatedTemperatureApi,
-  Prediction,
-  PredictionApi,
   WeatherConditionApi,
 } from '../types';
-import { AGGREGATED_URL, LATEST_URL, PREDICTION_URL } from './endpoint';
+import { AGGREGATED_URL, LATEST_URL } from './endpoint';
 
 export async function fetchLatestData<T extends WeatherConditionApi>() {
   return await fetch(`${LATEST_URL}?source=outside`)
@@ -27,18 +24,5 @@ export async function fetchAggregatedTemperature<
     .then((response) => response.json())
     .then((data) => {
       return (data.data as T[]).map((a) => aggregatedTemperatureFromApi(a));
-    });
-}
-
-export async function fetchPrediction<T extends PredictionApi>(
-  startDate: string,
-  endDate: string,
-): Promise<Prediction> {
-  return await fetch(
-    `${PREDICTION_URL}?start_date=${startDate}&end_date=${endDate}`,
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      return data.map((p: T) => predictionFromApi(p));
     });
 }

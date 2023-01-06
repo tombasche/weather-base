@@ -45,11 +45,6 @@ export type AggregatedTemperatureApi = {
   timestamp: string;
 };
 
-export type Prediction = {
-  snowfall: number[];
-  rain: number[];
-};
-
 export type PredictionApi = {
   latitude: number;
   longitude: number;
