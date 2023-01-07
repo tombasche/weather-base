@@ -7,6 +7,7 @@ defmodule WeatherTrackerWeb.WeatherConditionsController do
 
   alias WeatherTrackerWeb.WeatherConditionsResponse
   alias WeatherTrackerWeb.WeatherConditionAggregatedResponse
+  alias WeatherTrackerForecast.PredictionService
 
   def get_latest(conn, _params) do
     conn = Plug.Conn.fetch_query_params(conn)
