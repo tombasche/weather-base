@@ -13,4 +13,6 @@ config :weather_tracker, WeatherTrackerWeb.Endpoint, url: [host: "localhost"]
 
 config(:phoenix, :json_library, Jason)
 
+config :weather_tracker, client: WeatherTrackerForecast.PredictionClient
+
 import_config("#{config_env()}.exs")

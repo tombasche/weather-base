@@ -1,0 +1,1 @@
+Mox.defmock(PredictionClientBehaviourMock, for: WeatherTrackerForecast.PredictionClientBehaviour)
