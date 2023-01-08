@@ -1,4 +1,6 @@
 defmodule WeatherTrackerForecast.PredictionClient do
+  @moduledoc false
+
   @behaviour WeatherTrackerForecast.PredictionClientBehaviour
 
   use HTTPoison.Base
