@@ -3,7 +3,7 @@ defmodule WeatherTrackerForecast.WeatherForecast.PredictionRepositoryTest do
 
   alias WeatherTrackerForecast.WeatherForecast.PredictionRepository
 
-  test "test saving with ecto model" do
+  test "test saving a new prediction" do
     create_new(%{
       timestamp: ~U[2022-10-03 00:00:00Z],
       snow_cm: 1.0,
