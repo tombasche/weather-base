@@ -3,6 +3,7 @@ defmodule WeatherTrackerForecast.PredictionService do
 
   def get_prediction(start_date, end_date) do
     with {:ok, result} <- client().get_prediction(start_date, end_date) do
+      # TODO convert the result into something usable by the app
       {:ok, result}
     else
       err -> err
