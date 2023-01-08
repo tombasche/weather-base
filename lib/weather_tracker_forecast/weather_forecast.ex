@@ -13,7 +13,7 @@ defmodule WeatherTrackerForecast.WeatherForecast.PredictionModel do
   end
 
   @doc false
-  def changeset(prediction, attrs) do
+  def create_changeset(prediction, attrs) do
     prediction
     |> cast(attrs, [:timestamp, :snow_cm, :rain_mm])
     |> validate_required([:timestamp, :snow_cm, :rain_mm])
