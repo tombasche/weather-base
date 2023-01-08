@@ -6,7 +6,7 @@ defmodule WeatherTrackerForecast.PredictionClientTest do
   describe "get prediction" do
     test "it gets prediction data when given start and end date" do
       PredictionClientBehaviourMock
-      |> expect(:get_prediction, fn _start_date, _end_date ->
+      |> expect(:get_predictions, fn _start_date, _end_date ->
         {:ok,
          %{
            latitude: 60.16998,
@@ -37,7 +37,7 @@ defmodule WeatherTrackerForecast.PredictionClientTest do
          }}
       end)
 
-      result = PredictionService.get_prediction("2022-01-01", "2022-01-02")
+      result = PredictionService.get_predictions("2022-01-01", "2022-01-02")
 
       assert {:ok,
               [

@@ -10,7 +10,7 @@ defmodule WeatherTrackerForecast.PredictionClient do
 
   defp base_url, do: "https://api.open-meteo.com"
 
-  def get_prediction(start_date, end_date) do
+  def get_predictions(start_date, end_date) do
     url(start_date, end_date)
     |> do_get()
   end
