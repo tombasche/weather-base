@@ -44,6 +44,7 @@ defmodule WeatherTracker.MixProject do
       {:protobuf, "~> 0.10"},
       {:cors_plug, "~> 3.0"},
       {:httpoison, "~> 1.8"},
+      {:poison, "~> 5.0"},
       {:mox, "~> 1.0", only: :test},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false}

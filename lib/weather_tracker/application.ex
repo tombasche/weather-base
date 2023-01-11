@@ -8,7 +8,12 @@ defmodule WeatherTracker.Application do
     children = [
       WeatherTracker.Repo,
       {GRPC.Server.Supervisor, {WeatherTrackerWeb.Endpoint, 50_051, start_server: true}},
-      WeatherTrackerWeb.Endpoint
+      WeatherTrackerWeb.Endpoint,
+      {WeatherForecast.ForecastJob,
+       %{
+         # TODO make this an env var
+         interval: 5000
+       }}
     ]
 
     opts = [strategy: :one_for_one, name: WeatherTracker.Supervisor]

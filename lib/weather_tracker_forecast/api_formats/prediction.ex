@@ -8,13 +8,15 @@ defmodule WeatherTrackerForecast.Prediction do
   ]
 
   def from_api_response(api_response) do
-    api_response.hourly |> to_format() |> Enum.filter(fn obj -> obj.timestamp != nil end)
+    api_response["hourly"]
+    |> to_format()
+    |> Enum.filter(fn obj -> obj.timestamp != nil end)
   end
 
   defp to_format(raw) do
-    timestamps = Enum.map(raw.time, &to_naive_dt/1)
+    timestamps = Enum.map(raw["time"], &to_naive_dt/1)
 
-    [timestamps, raw.snowfall, raw.rain]
+    [timestamps, raw["snowfall"], raw["rain"]]
     |> List.zip()
     |> Enum.map(&Tuple.to_list/1)
     |> Enum.map(&expand_to_object/1)

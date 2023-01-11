@@ -18,7 +18,7 @@ defmodule WeatherTrackerForecast.PredictionClient do
   defp do_get(url) do
     case get(url) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        {:ok, body}
+        {:ok, Poison.decode!(body)}
 
       {:error, %HTTPoison.Error{reason: reason}} ->
         {:error, reason}
