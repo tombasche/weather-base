@@ -10,5 +10,13 @@ defmodule WeatherTracker.Repo.Migrations.CreatePredictions do
 
       timestamps()
     end
+
+    create(
+      unique_index(
+        :predictions,
+        ~w(timestamp)a,
+        name: :unique_timestamp_index
+      )
+    )
   end
 end

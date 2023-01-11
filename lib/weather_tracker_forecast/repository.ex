@@ -10,6 +10,9 @@ defmodule WeatherTrackerForecast.WeatherForecast.PredictionRepository do
   def create_entry(attrs) do
     %PredictionModel{}
     |> PredictionModel.create_changeset(attrs)
-    |> Repo.insert()
+    |> Repo.insert(
+      on_conflict: [set: [snow_cm: attrs.snow_cm, rain_mm: attrs.rain_mm]],
+      conflict_target: :timestamp
+    )
   end
 end

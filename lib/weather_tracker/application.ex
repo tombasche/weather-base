@@ -11,8 +11,7 @@ defmodule WeatherTracker.Application do
       WeatherTrackerWeb.Endpoint,
       {WeatherForecast.ForecastJob,
        %{
-         # TODO make this an env var
-         interval: 5000
+         interval: forecast_fetch_interval()
        }}
     ]
 
@@ -24,5 +23,9 @@ defmodule WeatherTracker.Application do
   def config_change(changed, _new, removed) do
     WeatherTrackerWeb.Endpoint.config_change(changed, removed)
     :ok
+  end
+
+  defp forecast_fetch_interval() do
+    Application.get_env(:weather_tracker, :forecast_fetch_interval)
   end
 end
