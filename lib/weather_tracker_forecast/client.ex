@@ -5,6 +5,8 @@ defmodule WeatherTrackerForecast.PredictionClient do
 
   use HTTPoison.Base
 
+  import Poison, only: [decode!: 1]
+
   defp latitude, do: 60.17
   defp longitude, do: 24.94
 
@@ -18,7 +20,7 @@ defmodule WeatherTrackerForecast.PredictionClient do
   defp do_get(url) do
     case get(url) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        {:ok, Poison.decode!(body)}
+        {:ok, decode!(body)}
 
       {:error, %HTTPoison.Error{reason: reason}} ->
         {:error, reason}
