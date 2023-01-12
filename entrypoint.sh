@@ -2,11 +2,12 @@
 
 set -e
 
-mix deps.get
+mix deps.get 
+mix deps.compile
 
 mix ecto.create
 mix ecto.migrate
 echo "Database created."
 
-ENV=prod mix grpc.server & 
+MIX_ENV=prod mix grpc.server & 
 mix phx.server
