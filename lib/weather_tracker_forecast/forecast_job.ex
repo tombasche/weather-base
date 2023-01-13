@@ -1,7 +1,6 @@
 defmodule WeatherForecast.ForecastJob do
   @moduledoc false
-  alias WeatherTrackerForecast.WeatherForecast.PredictionRepository
-  alias WeatherTrackerForecast.PredictionService
+  alias WeatherTrackerForecast.ForecastJobService
   use GenServer, restart: :transient
 
   require Logger
@@ -29,16 +28,10 @@ defmodule WeatherForecast.ForecastJob do
     {:noreply, state |> fetch()}
   end
 
-  defp fetch(state) do
-    today = DateTime.utc_now()
+  def fetch(state) do
+    today_fn = &DateTime.utc_now/1
 
-    start_date = today |> Calendar.strftime("%Y-%m-%d")
-    end_date = today |> DateTime.add(24 * 60 * 60) |> Calendar.strftime("%Y-%m-%d")
-
-    case PredictionService.get_predictions(start_date, end_date) do
-      {:ok, result} -> Enum.each(result, &PredictionRepository.create_entry/1)
-      {:error, reason} -> Logger.error("Error getting prediction data #{reason}")
-    end
+    ForecastJobService.fetch(today_fn)
 
     schedule_next_fetch(state.interval)
 
