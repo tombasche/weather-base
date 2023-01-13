@@ -15,7 +15,7 @@ config(:phoenix, :json_library, Jason)
 
 config :weather_tracker, client: WeatherTrackerForecast.PredictionClient
 
-# Milliseconds in 12 hours
-config :weather_tracker, :forecast_fetch_interval, 43_200_000
+# Milliseconds in 12 hours (temporarily 10 minutes for testing)
+config :weather_tracker, :forecast_fetch_interval, 600_000
 
 import_config("#{config_env()}.exs")
