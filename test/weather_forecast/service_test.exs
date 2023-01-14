@@ -1,4 +1,4 @@
-defmodule WeatherTrackerForecast.PredictionClientTest do
+defmodule WeatherTrackerForecast.PredictionServiceTest do
   use ExUnit.Case
   alias WeatherTrackerForecast.PredictionService
   import Mox
