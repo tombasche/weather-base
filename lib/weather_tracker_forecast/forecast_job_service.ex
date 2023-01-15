@@ -20,6 +20,7 @@ defmodule WeatherTrackerForecast.ForecastJobService do
 
   defp save_entries(entries) do
     Enum.each(entries, &PredictionRepository.create_entry/1)
+    Logger.info("Saved #{length(entries)} prediction entries")
     {:ok, entries}
   end
 

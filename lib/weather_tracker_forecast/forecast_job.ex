@@ -6,6 +6,7 @@ defmodule WeatherForecast.ForecastJob do
   require Logger
 
   def start_link(options \\ %{}) do
+    Logger.info("Started prediction fetch job - running every #{options[:interval]}ms")
     GenServer.start_link(__MODULE__, options, name: __MODULE__)
   end
 
@@ -29,7 +30,7 @@ defmodule WeatherForecast.ForecastJob do
   end
 
   def fetch(state) do
-    today_fn = &DateTime.utc_now/1
+    today_fn = &DateTime.utc_now/0
 
     ForecastJobService.fetch(today_fn)
 
