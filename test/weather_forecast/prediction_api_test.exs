@@ -39,6 +39,20 @@ defmodule WeatherForecast.PredictionApiTest do
            }
   end
 
+  test "get prediction summary for a date range when no data found" do
+    conn =
+      conn(
+        :get,
+        "/api/prediction-summary?start_date=2022-10-01T00:00:00Z&end_date=2022-10-11T00:00:00Z"
+      )
+
+    conn = Router.call(conn, @opts)
+    assert conn.status == 200
+    result = json_response(conn, 200)["data"]
+
+    assert result == %{}
+  end
+
   test "start_date and end_date are required" do
     conn = conn(:get, "/api/prediction-summary")
     response = Router.call(conn, @opts)

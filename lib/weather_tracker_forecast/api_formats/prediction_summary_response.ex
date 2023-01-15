@@ -7,6 +7,10 @@ defmodule WeatherTrackerForecast.ApiFormats.PredictionSummaryResponse do
   @moduledoc false
   defstruct amount: nil, over: %SummaryTime{}, at: nil
 
+  def from_raw([]) do
+    %{}
+  end
+
   def from_raw(data) do
     as_map = Enum.map(data, &Map.from_struct/1)
     %{rain: rain_summary(as_map), snow: snow_summary(as_map)}
