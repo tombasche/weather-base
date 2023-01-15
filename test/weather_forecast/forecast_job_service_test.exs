@@ -39,7 +39,7 @@ defmodule WeatherForecast.ForecastJobServiceTest do
        }}
     end)
 
-    job = ForecastJobService.fetch(&fetch_date/0)
+    ForecastJobService.fetch(&fetch_date/0)
   end
 
   def fetch_date do
