@@ -11,5 +11,11 @@ defmodule WeatherTrackerWeb.Router do
 
     get("/weather-conditions", WeatherConditionsController, :get_latest)
     get("/weather-conditions-aggregated", WeatherConditionsController, :get_aggregated)
+
+    get(
+      "/prediction-summary",
+      WeatherConditionsController,
+      :get_prediction_summary
+    )
   end
 end

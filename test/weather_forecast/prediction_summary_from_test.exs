@@ -18,7 +18,7 @@ defmodule WeatherForecast.PredictionSummaryFromTest do
                  amount: 2.00,
                  over: %{
                    time: 3,
-                   unit: 'hours'
+                   unit: "hours"
                  },
                  at: ~N[2023-01-05 04:00:00.000]
                },
@@ -26,7 +26,7 @@ defmodule WeatherForecast.PredictionSummaryFromTest do
                  amount: 0.00,
                  over: %{
                    time: 3,
-                   unit: 'hours'
+                   unit: "hours"
                  },
                  at: ~N[2023-01-05 04:00:00.000]
                }
@@ -47,7 +47,7 @@ defmodule WeatherForecast.PredictionSummaryFromTest do
                  amount: 0.00,
                  over: %{
                    time: 3,
-                   unit: 'hours'
+                   unit: "hours"
                  },
                  at: ~N[2023-01-05 04:00:00.000]
                },
@@ -55,7 +55,7 @@ defmodule WeatherForecast.PredictionSummaryFromTest do
                  amount: 1.90,
                  over: %{
                    time: 3,
-                   unit: 'hours'
+                   unit: "hours"
                  },
                  at: ~N[2023-01-05 04:00:00.000]
                }

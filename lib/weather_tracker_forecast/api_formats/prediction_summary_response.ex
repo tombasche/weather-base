@@ -1,6 +1,6 @@
 defmodule SummaryTime do
   @moduledoc false
-  defstruct time: nil, unit: 'hours'
+  defstruct time: nil, unit: "hours"
 end
 
 defmodule WeatherTrackerForecast.ApiFormats.PredictionSummaryResponse do
@@ -17,7 +17,7 @@ defmodule WeatherTrackerForecast.ApiFormats.PredictionSummaryResponse do
       amount: sum_timeseries(data, :rain_mm),
       over: %{
         time: length(data),
-        unit: 'hours'
+        unit: "hours"
       },
       at: event_starting(data)
     }
@@ -28,7 +28,7 @@ defmodule WeatherTrackerForecast.ApiFormats.PredictionSummaryResponse do
       amount: sum_timeseries(data, :snow_cm),
       over: %{
         time: length(data),
-        unit: 'hours'
+        unit: "hours"
       },
       at: event_starting(data)
     }
