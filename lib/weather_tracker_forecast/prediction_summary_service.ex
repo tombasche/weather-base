@@ -1,10 +1,11 @@
 defmodule WeatherTrackerForecast.PredictionSummaryService do
   @moduledoc false
+  alias WeatherTrackerForecast.WeatherForecast.PredictionRepository
 
-  # TODO this accepts start and end date, queries the predictions table for the next non-zero sequence of either
-  # rain or snow predictions and passes this to summary/1
   def generate_summary_data(start_date, end_date) do
-    []
+    query_result = PredictionRepository.predictions_for_date_range(start_date, end_date)
+    # TODO map to a struct
+    summary(query_result)
   end
 
   def summary(data) do
@@ -17,7 +18,8 @@ defmodule WeatherTrackerForecast.PredictionSummaryService do
       over: %{
         time: length(data),
         unit: 'hours'
-      }
+      },
+      at: event_starting(data)
     }
   end
 
@@ -27,11 +29,16 @@ defmodule WeatherTrackerForecast.PredictionSummaryService do
       over: %{
         time: length(data),
         unit: 'hours'
-      }
+      },
+      at: event_starting(data)
     }
   end
 
   defp sum_timeseries(ts, field_name) do
     Enum.map(ts, & &1[field_name]) |> Enum.sum() |> Float.round(1)
+  end
+
+  defp event_starting(ts) do
+    List.first(ts) |> Access.get(:timestamp)
   end
 end
