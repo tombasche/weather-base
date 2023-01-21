@@ -32,13 +32,17 @@ export async function fetchPrediction<T extends PredictionApi>(
   startDate: string,
   endDate: string,
 ): Promise<PredictionApi | undefined> {
+  const hasData = (d: { data: Object }) => Object.keys(d).length !== 0;
+
   return await fetch(
     `${PREDICTION_URL}?start_date=${startDate}&end_date=${endDate}`,
   )
     .then((response) => response.json())
     .then((data) => {
-      if (Object.keys(data).length === 0) {
-        return data as T;
-      } else return undefined;
+      if (!hasData(data.data)) {
+        return undefined;
+      } else {
+        return data.data as T;
+      }
     });
 }
