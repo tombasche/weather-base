@@ -1,6 +1,10 @@
 import React from 'react';
 import Temperature from './components/Temperature';
-import { AggregatedTemperature, WeatherCondition } from './types';
+import {
+  AggregatedTemperature,
+  PredictionApi,
+  WeatherCondition,
+} from './types';
 import styled from 'styled-components';
 import Loading from './components/Loading';
 import ErrorBanner from './components/ErrorBanner';
@@ -8,12 +12,21 @@ import useInterval from './api/useInterval';
 import LastUpdated from './components/LastUpdated';
 import FeelsLike from './components/FeelsLike';
 import Humidity from './components/Humidity';
-import { datesForAggregatedGraphFrom, timeOfDay } from './utils';
+import {
+  datesForAggregatedGraphFrom,
+  datesForPredictionsFrom,
+  timeOfDay,
+} from './utils';
 import TimeOfDay from './components/TimeOfDayIndicator';
 import AirQuality from './components/AirQuality';
-import { fetchAggregatedTemperature, fetchLatestData } from './api/httpCalls';
+import {
+  fetchAggregatedTemperature,
+  fetchLatestData,
+  fetchPrediction,
+} from './api/httpCalls';
 import { TemperatureChart } from './components/TemperatureChart';
 import DashboardLink from './components/DashboardLink';
+import Prediction from './components/Prediction';
 
 const Root = styled.div`
   display: flex;
@@ -64,6 +77,8 @@ const App = () => {
     AggregatedTemperature[]
   >([]);
 
+  const [predictionData, setPredictionData] = React.useState<PredictionApi>();
+
   const [date, setDate] = React.useState<Date>(new Date());
 
   React.useEffect(() => {
@@ -78,6 +93,10 @@ const App = () => {
 
     fetchAggregatedTemperature(...datesForAggregatedGraphFrom(new Date()))
       .then((response) => setAggregatedTempData(response))
+      .catch((e) => setError(e));
+
+    fetchPrediction(...datesForPredictionsFrom(new Date()))
+      .then((response) => setPredictionData(response))
       .catch((e) => setError(e));
   }, []);
 
@@ -95,6 +114,12 @@ const App = () => {
       .catch((e) => setError(e));
   }, AGGREGATED_DATA_REFRESH_INTERVAL);
 
+  useInterval(async () => {
+    fetchPrediction(...datesForPredictionsFrom(new Date()))
+      .then((response) => setPredictionData(response))
+      .catch((e) => setError(e));
+  }, AGGREGATED_DATA_REFRESH_INTERVAL);
+
   if (error !== undefined) {
     return <ErrorBanner error={error} />;
   }
@@ -109,6 +134,7 @@ const App = () => {
         <TimeOfDay timeOfDay={timeOfDay(date)} />
         <Humidity humidity={data.humidity} />
         <AirQuality iaq={data.iaq} />
+        {predictionData && <Prediction prediction={predictionData} />}
       </TopBanner>
       <TemperatureContainer>
         <TemperatureAndFeelsLike>

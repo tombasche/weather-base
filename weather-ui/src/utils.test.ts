@@ -1,7 +1,10 @@
+import { PredictionApi } from './types';
 import {
   airQuality,
   dateForXAxisTick,
   datesForAggregatedGraphFrom,
+  datesForPredictionsFrom,
+  predictionMessage,
   timeOfDay,
   toUnit,
 } from './utils';
@@ -97,5 +100,53 @@ describe('get dates for aggregated time series', () => {
     const result = datesForAggregatedGraphFrom(now);
     expect(result[0]).toBe('2022-09-27T00:57:58.000Z');
     expect(result[1]).toBe('2022-09-27T12:57:58.000Z');
+  });
+});
+
+describe('get dates for predicted precipitation', () => {
+  it('gets 2 dates for the prediction query', () => {
+    const now = new Date('2022-09-27T12:57:58Z');
+
+    const result = datesForPredictionsFrom(now);
+    expect(result[0]).toBe('2022-09-27T12:57:58.000Z');
+    expect(result[1]).toBe('2022-09-28T12:57:58.000Z');
+  });
+});
+
+describe('prediction message', () => {
+  const predictionApi: PredictionApi = {
+    rain: {
+      amount: 1.0,
+      over: {
+        time: 3,
+        unit: 'hours',
+      },
+      at: '2023-01-05 04:00:00.000',
+    },
+    snow: {
+      amount: 1.0,
+      over: {
+        time: 3,
+        unit: 'hours',
+      },
+      at: '2023-01-05 04:00:00.000',
+    },
+  };
+
+  it('takes the snow prediction data and formats it in to a message', () => {
+    const message = predictionMessage(predictionApi.snow, 'snow');
+
+    expect(message).toContain('❄️');
+    expect(message).toContain('1 cm');
+    expect(message).toContain('4am');
+    expect(message).toContain('3 hours');
+  });
+  it('takes the rain prediction data and formats it in to a message', () => {
+    const message = predictionMessage(predictionApi.rain, 'rain');
+
+    expect(message).toContain('🌧️');
+    expect(message).toContain('1 mm');
+    expect(message).toContain('4am');
+    expect(message).toContain('3 hours');
   });
 });

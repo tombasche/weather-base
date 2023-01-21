@@ -52,23 +52,21 @@ export const handlers = [
     return res(
       ctx.status(200),
       ctx.json({
-        snowfall: {
-          chance: 80,
-          amount: 2.0,
-          unit: 'cm',
-          over: {
-            time: 4,
-            unit: 'hour',
-          },
-        },
         rain: {
-          chance: 0,
-          amount: 0.0,
-          unit: 'mm',
+          amount: 2.0,
           over: {
-            time: 4,
-            unit: 'hour',
+            time: 3,
+            unit: 'hours',
           },
+          at: '2023-01-05 04:00:00.000',
+        },
+        snow: {
+          amount: 0.0,
+          over: {
+            time: 3,
+            unit: 'hours',
+          },
+          at: '2023-01-05 04:00:00.000',
         },
       }),
     );

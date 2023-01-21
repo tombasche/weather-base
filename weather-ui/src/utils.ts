@@ -1,4 +1,10 @@
-import { AirQualityRating, TemperatureUnit, TimeOfDay } from './types';
+import {
+  AirQualityRating,
+  Rain,
+  Snow,
+  TemperatureUnit,
+  TimeOfDay,
+} from './types';
 
 export const toUnit = (value: number, unit: TemperatureUnit): number => {
   switch (unit) {
@@ -34,7 +40,7 @@ export const airQuality = (iaq: number): AirQualityRating => {
   return 'HAZARDOUS';
 };
 
-export const dateForXAxisTick = (timestamp: Date): string => {
+const hoursAmPm = (timestamp: Date): string => {
   const hours12h = (hours: number) => {
     if (hours === 0) return 0;
     if (hours === 12) return 12;
@@ -42,13 +48,15 @@ export const dateForXAxisTick = (timestamp: Date): string => {
     return hours % 12;
   };
   const amPm = timestamp.getHours() >= 12 ? 'pm' : 'am';
-  const timeString = `${hours12h(timestamp.getHours())}${amPm}`;
+  return `${hours12h(timestamp.getHours())}${amPm}`;
+};
 
+export const dateForXAxisTick = (timestamp: Date): string => {
   const date = timestamp.toLocaleDateString('en-GB', {
     day: 'numeric',
     month: 'short',
   });
-  return `${timeString} ${date}`;
+  return `${hoursAmPm(timestamp)} ${date}`;
 };
 
 const LAST_DAY_H = 12;
@@ -62,4 +70,34 @@ export const datesForAggregatedGraphFrom = (
   const from = new Date(to.getTime());
   from.setHours(to.getHours() - LAST_DAY_H);
   return [from, toNew].map((d) => d.toISOString()) as AggregatedGraphFromTo;
+};
+
+const PREDICTION_TIME_PERIOD_H = 24;
+
+type PredictionFromTo = [string, string];
+
+export const datesForPredictionsFrom = (to: Date): PredictionFromTo => {
+  const toNew = new Date(to.getTime());
+  const from = new Date(to.getTime());
+  toNew.setHours(to.getHours() + PREDICTION_TIME_PERIOD_H);
+  return [from, toNew].map((d) => d.toISOString()) as AggregatedGraphFromTo;
+};
+
+export const predictionMessage = (
+  data: Snow | Rain,
+  type: 'snow' | 'rain',
+): string => {
+  const unit = type === 'snow' ? 'cm' : 'mm';
+
+  const icon = type === 'snow' ? '❄️' : '🌧️';
+
+  const amount = `${data.amount} ${unit}`;
+
+  const date = new Date(data.at);
+  const tzDate = new Date(
+    date.toLocaleString('en-US', { timeZone: 'Europe/Helsinki' }),
+  );
+  return `${icon} ${amount} at ${hoursAmPm(tzDate)} for ${data.over.time} ${
+    data.over.unit
+  }`;
 };

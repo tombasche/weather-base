@@ -1,6 +1,5 @@
 import {
   aggregatedTemperatureFromApi,
-  predictionFromApi,
   weatherConditionFromApi,
 } from './transformers';
 import { AggregatedTemperature, WeatherCondition } from './types';
