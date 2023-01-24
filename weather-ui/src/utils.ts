@@ -94,10 +94,7 @@ export const predictionMessage = (
   const amount = `${data.amount} ${unit}`;
 
   const date = new Date(data.at);
-  const tzDate = new Date(
-    date.toLocaleString('en-US', { timeZone: 'Europe/Helsinki' }),
-  );
-  return `${icon} ${amount} at ${hoursAmPm(tzDate)} for ${data.over.time} ${
+  return `${icon} ${amount} at ${hoursAmPm(date)} for ${data.over.time} ${
     data.over.unit
   }`;
 };
