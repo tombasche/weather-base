@@ -28,6 +28,6 @@ defmodule WeatherTrackerForecast.PredictionClient do
   end
 
   defp url(start_date, end_date) do
-    "#{base_url()}/v1/forecast?latitude=#{latitude()}&longitude=#{longitude()}&hourly=snowfall,rain&timezone=Europe/Helsinki&start_date=#{start_date}&end_date=#{end_date}"
+    "#{base_url()}/v1/forecast?latitude=#{latitude()}&longitude=#{longitude()}&hourly=snowfall,rain&start_date=#{start_date}&end_date=#{end_date}"
   end
 end
