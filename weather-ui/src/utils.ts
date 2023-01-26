@@ -93,8 +93,15 @@ export const predictionMessage = (
 
   const amount = `${data.amount} ${unit}`;
 
-  const date = new Date(data.at);
+  // Move to Helsinki timezone
+  const date = addHours(new Date(data.at), 2);
+
   return `${icon} ${amount} at ${hoursAmPm(date)} for ${data.over.time} ${
     data.over.unit
   }`;
+};
+
+const addHours = (d: Date, h: number) => {
+  d.setTime(d.getTime() + h * 60 * 60 * 1000);
+  return d;
 };
